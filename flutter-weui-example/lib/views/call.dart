@@ -51,7 +51,7 @@ class CallPage extends StatelessWidget {
           WeCell(
             label: '标题文字',
             content: '带点击效果的',
-            click: () {
+            onClick: () {
               print('click');
             }
           ),

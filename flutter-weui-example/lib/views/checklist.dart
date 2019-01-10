@@ -81,7 +81,7 @@ class _ChecklistPageState extends State {
             child: WeButton(
               value.indexOf(2) >= 0 ? '移除第二个' : '选中第二个',
               theme: WeButtonType.primary,
-              click: () {
+              onClick: () {
                 setState(() {
                   if (value.indexOf(2) >= 0) {
                     value.remove(2);

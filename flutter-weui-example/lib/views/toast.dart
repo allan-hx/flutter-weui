@@ -14,23 +14,23 @@ class ToastPage extends StatelessWidget {
       child: Column(
         children: <Widget>[
           TextTitle('Toast.info', noPadding: true),
-          WeButton('default', theme: WeButtonType.primary, click: () {
+          WeButton('default', theme: WeButtonType.primary, onClick: () {
             WeToast.info(context)('提示');
           }),
           rowBox,
-          WeButton('info top', theme: WeButtonType.primary, click: () {
+          WeButton('info top', theme: WeButtonType.primary, onClick: () {
             WeToast.info(context)('提示 - top', align: WeToastInfoAlign.top);
           }),
           rowBox,
-          WeButton('info bottom', theme: WeButtonType.primary, click: () {
+          WeButton('info bottom', theme: WeButtonType.primary, onClick: () {
             WeToast.info(context)('提示 - bottom', align: WeToastInfoAlign.bottom);
           }),
           rowBox,
-          WeButton('info 自定义时间', theme: WeButtonType.primary, click: () {
+          WeButton('info 自定义时间', theme: WeButtonType.primary, onClick: () {
             WeToast.info(context)('5秒消失...', duration: 5000);
           }),
           rowBox,
-          WeButton('自定义距离', theme: WeButtonType.primary, click: () {
+          WeButton('自定义距离', theme: WeButtonType.primary, onClick: () {
             WeToast.info(context)(
               '只适合align为top或bottom...',
               align: WeToastInfoAlign.top,
@@ -38,7 +38,7 @@ class ToastPage extends StatelessWidget {
             );
           }),
           rowBox,
-          WeButton('带Widget的内容', theme: WeButtonType.primary, click: () {
+          WeButton('带Widget的内容', theme: WeButtonType.primary, onClick: () {
             WeToast.info(context)(
               Row(
                 mainAxisSize: MainAxisSize.min,
@@ -54,7 +54,7 @@ class ToastPage extends StatelessWidget {
           }),
           rowBox,
           TextTitle('其他提示', noPadding: true),
-          WeButton('loading', theme: WeButtonType.primary, click: () {
+          WeButton('loading', theme: WeButtonType.primary, onClick: () {
             final close = WeToast.loading(context)(
               message: '加载中...'
             );
@@ -62,29 +62,29 @@ class ToastPage extends StatelessWidget {
             Future.delayed(Duration(milliseconds: 5000), close);
           }),
           rowBox,
-          WeButton('loading - 无文字', theme: WeButtonType.primary, click: () {
+          WeButton('loading - 无文字', theme: WeButtonType.primary, onClick: () {
             WeToast.loading(context)(
               duration: 3000
             );
           }),
           rowBox,
-          WeButton('success', theme: WeButtonType.primary, click: () {
+          WeButton('success', theme: WeButtonType.primary, onClick: () {
             WeToast.success(context)(
               message: '已完成'
             );
           }),
           rowBox,
-          WeButton('success - 无文字', theme: WeButtonType.primary, click: () {
+          WeButton('success - 无文字', theme: WeButtonType.primary, onClick: () {
             WeToast.success(context)();
           }),
           rowBox,
-          WeButton('fail', theme: WeButtonType.primary, click: () {
+          WeButton('fail', theme: WeButtonType.primary, onClick: () {
             WeToast.fail(context)(
               message: '操作失败'
             );
           }),
           rowBox,
-          WeButton('fail - 无文字', theme: WeButtonType.primary, click: () {
+          WeButton('fail - 无文字', theme: WeButtonType.primary, onClick: () {
             WeToast.fail(context)();
           }),
         ]

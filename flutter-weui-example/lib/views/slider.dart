@@ -74,7 +74,7 @@ class _SliderPageState extends State {
               child: WeButton(
                 '设置value为50',
                 theme: WeButtonType.primary,
-                click: () {
+                onClick: () {
                   setState(() {
                     changeValue = 50;                 
                   });

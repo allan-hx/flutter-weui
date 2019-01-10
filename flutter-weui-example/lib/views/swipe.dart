@@ -75,7 +75,7 @@ class SwipePageState extends State {
             child: WeButton(
               '外部控制',
               theme: WeButtonType.primary,
-              click: () {
+              onClick: () {
                 (swipeKey.currentState as WeSwipeState).setIndex(2);
               }
             )

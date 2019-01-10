@@ -28,23 +28,23 @@ class DrawerPageState extends State {
       describe: '抽屉',
       child: Column(
         children: [
-          WeButton('top', theme: WeButtonType.primary, click: () {
+          WeButton('top', theme: WeButtonType.primary, onClick: () {
             show(WeDrawerPlacement.top);
           }),
           SizedBox(height: 20.0),
-          WeButton('right', theme: WeButtonType.primary, click: () {
+          WeButton('right', theme: WeButtonType.primary, onClick: () {
             show(WeDrawerPlacement.right);
           }),
           SizedBox(height: 20.0),
-          WeButton('bottom', theme: WeButtonType.primary, click: () {
+          WeButton('bottom', theme: WeButtonType.primary, onClick: () {
             show(WeDrawerPlacement.bottom);
           }),
           SizedBox(height: 20.0),
-          WeButton('left', theme: WeButtonType.primary, click: () {
+          WeButton('left', theme: WeButtonType.primary, onClick: () {
             show(WeDrawerPlacement.left);
           }),
           SizedBox(height: 20.0),
-          WeButton('无遮罩', theme: WeButtonType.primary, click: () {
+          WeButton('无遮罩', theme: WeButtonType.primary, onClick: () {
             Function close;
             close = weDrawer(context)(
               mask: false,
@@ -54,7 +54,7 @@ class DrawerPageState extends State {
                 child: Align(
                   child: Padding(
                     padding: EdgeInsets.all(20.0),
-                    child: WeButton('关闭', theme: WeButtonType.primary, click: () {
+                    child: WeButton('关闭', theme: WeButtonType.primary, onClick: () {
                       close();
                     })
                   )

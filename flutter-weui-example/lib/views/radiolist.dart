@@ -91,7 +91,7 @@ class _RadioListState extends State<RadioListPage> {
             child: WeButton(
               '选中第二个',
               theme: WeButtonType.primary,
-              click: () {
+              onClick: () {
                 setState(() {
                   value = 2;
                 });

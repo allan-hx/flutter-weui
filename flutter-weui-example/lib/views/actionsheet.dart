@@ -19,7 +19,7 @@ class ActionsheetPage extends StatelessWidget {
       describe: '弹出式菜单',
       child: Column(
         children: <Widget>[
-          WeButton('android', theme: WeButtonType.primary, click: () {
+          WeButton('android', theme: WeButtonType.primary, onClick: () {
             actionsheetAndroid(
               childer: list,
               onChange: (int index) {
@@ -31,7 +31,7 @@ class ActionsheetPage extends StatelessWidget {
             );
           }),
           Container(height: 20.0),
-          WeButton('ios', theme: WeButtonType.primary, click: () {
+          WeButton('ios', theme: WeButtonType.primary, onClick: () {
             actionsheetIos(
               title: '请选择',
               childer: list,
@@ -45,7 +45,7 @@ class ActionsheetPage extends StatelessWidget {
             );
           }),
           Container(height: 20.0),
-          WeButton('ios 无取消按钮', theme: WeButtonType.primary, click: () {
+          WeButton('ios 无取消按钮', theme: WeButtonType.primary, onClick: () {
             actionsheetIos(
               title: '请选择',
               childer: list,
@@ -58,7 +58,7 @@ class ActionsheetPage extends StatelessWidget {
             );
           }),
           Container(height: 20.0),
-          WeButton('android 禁止遮罩层点击', theme: WeButtonType.primary, click: () {
+          WeButton('android 禁止遮罩层点击', theme: WeButtonType.primary, onClick: () {
             actionsheetAndroid(
               childer: list,
               maskClosable: false,
@@ -71,7 +71,7 @@ class ActionsheetPage extends StatelessWidget {
             );
           }),
           Container(height: 20.0),
-          WeButton('ios 禁止遮罩层点击', theme: WeButtonType.primary, click: () {
+          WeButton('ios 禁止遮罩层点击', theme: WeButtonType.primary, onClick: () {
             actionsheetIos(
               title: '请选择',
               childer: list,

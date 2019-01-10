@@ -50,12 +50,12 @@ class SwitchPageState extends State {
             }
           ),
           SizedBox(height: 10.0),
-          WeButton(open ? '关闭' : '打开', theme: WeButtonType.primary, click: () {
+          WeButton(open ? '关闭' : '打开', theme: WeButtonType.primary, onClick: () {
             setState(() {
               open = !open;             
             });
           }),
-          // WeButton('qrcode', theme: WeButtonType.primary, click: scan)
+          // WeButton('qrcode', theme: WeButtonType.primary, onClick: scan)
         ]
       )
     );

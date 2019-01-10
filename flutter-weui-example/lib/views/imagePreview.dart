@@ -22,20 +22,20 @@ class ImagePreviewState extends State {
       describe: '图片预览',
       child: Column(
         children: [
-          WeButton('图片预览', theme: WeButtonType.primary, click: () {
+          WeButton('图片预览', theme: WeButtonType.primary, onClick: () {
             weImagePreview(context)(
               images: images
             );
           }),
           box,
-          WeButton('隐藏指标', theme: WeButtonType.primary, click: () {
+          WeButton('隐藏指标', theme: WeButtonType.primary, onClick: () {
             weImagePreview(context)(
               images: images,
               indicators: false
             );
           }),
           box,
-          WeButton('默认展示第二张', theme: WeButtonType.primary, click: () {
+          WeButton('默认展示第二张', theme: WeButtonType.primary, onClick: () {
             weImagePreview(context)(
               images: images,
               defaultIndex: 1

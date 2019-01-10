@@ -12,7 +12,7 @@ class DialogPage extends StatelessWidget {
       child: Column(
         children: <Widget>[
           TextTitle('ios 主题', noPadding: true),
-          WeButton('alert', theme: WeButtonType.primary, click: () {
+          WeButton('alert', theme: WeButtonType.primary, onClick: () {
             WeDialog.alert(context)(
               '弹窗内容',
               onConfirm: () {
@@ -21,7 +21,7 @@ class DialogPage extends StatelessWidget {
             );
           }),
           SizedBox(height: 20.0),
-          WeButton('alert - 无标题', theme: WeButtonType.primary, click: () {
+          WeButton('alert - 无标题', theme: WeButtonType.primary, onClick: () {
             WeDialog.alert(context)(
               '弹窗内容',
               title: null,
@@ -31,7 +31,7 @@ class DialogPage extends StatelessWidget {
             );
           }),
           SizedBox(height: 20.0),
-          WeButton('confirm', theme: WeButtonType.primary, click: () {
+          WeButton('confirm', theme: WeButtonType.primary, onClick: () {
             WeDialog.confirm(context)(
               '弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内',
               onCancel: () {
@@ -43,7 +43,7 @@ class DialogPage extends StatelessWidget {
             );
           }),
           SizedBox(height: 20.0),
-          WeButton('confirm - 无标题', theme: WeButtonType.primary, click: () {
+          WeButton('confirm - 无标题', theme: WeButtonType.primary, onClick: () {
             WeDialog.confirm(context)(
               '弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内',
               title: null,
@@ -57,7 +57,7 @@ class DialogPage extends StatelessWidget {
           }),
           SizedBox(height: 20.0),
           TextTitle('android 主题', noPadding: true),
-          WeButton('alert', theme: WeButtonType.primary, click: () {
+          WeButton('alert', theme: WeButtonType.primary, onClick: () {
             WeDialog.alert(context)(
               '弹窗内容',
               theme: 'android',
@@ -67,7 +67,7 @@ class DialogPage extends StatelessWidget {
             );
           }),
           SizedBox(height: 20.0),
-          WeButton('alert - 无标题', theme: WeButtonType.primary, click: () {
+          WeButton('alert - 无标题', theme: WeButtonType.primary, onClick: () {
             WeDialog.alert(context)(
               '弹窗内容',
               title: null,
@@ -78,7 +78,7 @@ class DialogPage extends StatelessWidget {
             );
           }),
           SizedBox(height: 20.0),
-          WeButton('confirm', theme: WeButtonType.primary, click: () {
+          WeButton('confirm', theme: WeButtonType.primary, onClick: () {
             WeDialog.confirm(context)(
               '弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内',
               theme: 'android',
@@ -91,7 +91,7 @@ class DialogPage extends StatelessWidget {
             );
           }),
           SizedBox(height: 20.0),
-          WeButton('confirm - 无标题', theme: WeButtonType.primary, click: () {
+          WeButton('confirm - 无标题', theme: WeButtonType.primary, onClick: () {
             WeDialog.confirm(context)(
               '弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内',
               theme: 'android',

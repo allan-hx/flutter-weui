@@ -72,7 +72,7 @@ class ProgressState extends State {
           ),
           Padding(
             padding: EdgeInsets.all(20.0),
-            child: WeButton('上传', click: startUpload)
+            child: WeButton('上传', onClick: startUpload)
           )
         ]
       )
