@@ -61,7 +61,7 @@ class WeCell extends StatelessWidget {
   // 最小高度
   final double minHeight;
   // 点击
-  final Function click;
+  final Function onClick;
 
   WeCell({
     label,
@@ -69,7 +69,7 @@ class WeCell extends StatelessWidget {
     this.footer,
     this.align = Alignment.centerRight,
     this.minHeight = 46.0,
-    this.click
+    this.onClick
   }) {
     // label
     if (label is String) {
@@ -88,7 +88,7 @@ class WeCell extends StatelessWidget {
 
   // 点击
   void onTap() {
-    click();
+    onClick();
   }
 
   @override
@@ -150,7 +150,7 @@ class WeCell extends StatelessWidget {
       )
     );
 
-    if (click == null) {
+    if (onClick == null) {
       return child;
     }
 

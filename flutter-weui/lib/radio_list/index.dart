@@ -131,7 +131,7 @@ class _RadiolistState extends State<WeRadiolist> {
           content: Row(
             children: children
           ),
-          click: () {
+          onClick: () {
             change(item);
           }
         )

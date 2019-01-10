@@ -169,7 +169,7 @@ class _ChecklistState extends State<WeChecklist> {
           content: Row(
             children: children
           ),
-          click: () {
+          onClick: () {
             change(item);
           }
         )

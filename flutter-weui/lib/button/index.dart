@@ -22,7 +22,7 @@ class WeButton extends StatefulWidget {
   // 禁用
   final bool disabled;
   // 点击回调
-  final Function click;
+  final Function onClick;
   // loading
   final bool loading;
   // 按钮大小类型
@@ -77,7 +77,7 @@ class WeButton extends StatefulWidget {
   WeButton(
     this.child,
     {
-      this.click,
+      this.onClick,
       WeButtonSize size = WeButtonSize.acquiescent,
       hollow = false,
       WeButtonType theme = WeButtonType.acquiescent,
@@ -107,9 +107,9 @@ class WeButton extends StatefulWidget {
 
 class _ButtonState extends State<WeButton> {
   // 按钮点击
-  click() {
-    if (widget.click is Function) {
-      widget.click();
+  onClick() {
+    if (widget.onClick is Function) {
+      widget.onClick();
     }
   }
 
@@ -189,7 +189,7 @@ class _ButtonState extends State<WeButton> {
       borderRadius: borderRadius,
       color: widget.theme['backgroundColor'],
       child: InkWell(
-        onTap: click,
+        onTap: onClick,
         borderRadius: borderRadius,
         child: button
       )
