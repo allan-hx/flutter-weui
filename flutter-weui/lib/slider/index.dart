@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import '../theme.dart';
 
 // 默认背景
-const Color defaultColor = Color(0xffE9E9E9);
+const Color _defaultColor = Color(0xffE9E9E9);
+// 禁用颜色
+const Color _disabledColor = Color(0xffc9c9c9);
 // onChange
-typedef onChangeBack = void Function(dynamic value);
+typedef _onChangeBack = void Function(int value);
 
 class WeSlider extends StatefulWidget {
   final int value;
@@ -12,6 +14,8 @@ class WeSlider extends StatefulWidget {
   final int defaultValue;
   // 默认颜色
   final Color color;
+  // 禁用颜色
+  final Color disabledColor;
   // 高亮色
   final Color higColor;
   // 进度条高度
@@ -27,12 +31,13 @@ class WeSlider extends StatefulWidget {
   // 禁用状态
   final bool disabled;
   // onChange
-  final onChangeBack onChange;
+  final _onChangeBack onChange;
 
   WeSlider({
     this.value,
     this.defaultValue = 0,
-    this.color = defaultColor,
+    this.color = _defaultColor,
+    this.disabledColor = _disabledColor,
     this.higColor = primary,
     this.height = 2.0,
     this.buttonSize = 26.0,
@@ -79,6 +84,8 @@ class _WeSliderState extends State<WeSlider> {
 
   // 拖动
   void touchMove(data) {
+    if (widget.disabled) return;
+
     final double max = _boxWidth;
     // icon 移动的值
     double moveLeft = _startLeft + (data.globalPosition.dx - _startX);
@@ -130,6 +137,7 @@ class _WeSliderState extends State<WeSlider> {
   @override
   Widget build(BuildContext context) {
     final value = (widget.value is int ? widget.value : _value) * _stepWidth;
+    final bool isDisabled = widget.disabled;
 
     return SizedBox(
       key: _boxKey,
@@ -156,7 +164,7 @@ class _WeSliderState extends State<WeSlider> {
                   height: widget.height,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      color: widget.higColor
+                      color: isDisabled ? widget.disabledColor : widget.higColor
                     )
                   )
                 )

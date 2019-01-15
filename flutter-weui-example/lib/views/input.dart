@@ -55,6 +55,12 @@ class _InputPageState extends State {
                 footer: WeButton('获取验证码', size: WeButtonSize.mini, theme: WeButtonType.primary)
               ),
               WeInput(
+                label: '密码',
+                hintText: '请输入密码',
+                clearable: true,
+                obscureText: true
+              ),
+              WeInput(
                 hintText: '多行文本输入框...',
                 maxLines: 4
               )

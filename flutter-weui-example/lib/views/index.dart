@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_weui/flutter_weui.dart';
 import 'package:flutter_weui/theme.dart';
-// import 'package:barcode_scan/barcode_scan.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 
 class Index extends StatefulWidget {
   @override
@@ -30,7 +30,7 @@ class IndexState extends State {
         },
         {
           'title': 'Radiolist',
-          'url': '/radio-list'
+          'url': '/radiolist'
         },
         {
           'title': 'Input',
@@ -132,17 +132,17 @@ class IndexState extends State {
 
   // 二维码
   Future scan() async {
-    // final toast = WeToast.info(context);
-    // try {
-    //   String barcode = await BarcodeScanner.scan();
-    //   toast('二维码内容: $barcode');
-    // } on PlatformException catch (e) {
-    //   if (e.code == BarcodeScanner.CameraAccessDenied) {
-    //     toast('请授权相机权限');
-    //   } else {
-    //     toast('Unknown error: $e');
-    //   }
-    // }
+    final toast = WeToast.info(context);
+    try {
+      final String url = await BarcodeScanner.scan();
+      Navigator.of(context).pushNamed(url);
+    } on PlatformException catch (e) {
+      if (e.code == BarcodeScanner.CameraAccessDenied) {
+        toast('请授权相机权限');
+      } else {
+        toast('Unknown error: $e');
+      }
+    }
   }
 
   // 渲染二级列表

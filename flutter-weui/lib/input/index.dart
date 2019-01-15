@@ -4,15 +4,15 @@ import '../utils.dart';
 import '../icon/index.dart';
 
 class WeInput extends StatefulWidget {
-  // label
-  dynamic label;
   // key
   final GlobalKey key;
+  // label
+  dynamic label;
   // 默认值
   final String defaultValue;
   // 最大行数
   final int maxLines;
-  // hintText
+  // 提示文字
   final String hintText;
   // footer
   final Widget footer;
@@ -21,7 +21,7 @@ class WeInput extends StatefulWidget {
   // 文字对其方式
   final TextAlign textAlign;
   // 输入框类型
-  final TextInputType keyboardType;
+  final TextInputType type;
   // 密码框
   final bool obscureText;
   // 样式
@@ -31,7 +31,7 @@ class WeInput extends StatefulWidget {
   // label宽度
   final double labelWidth;
   // onChange
-  final onChange;
+  final Function(String value) onChange;
 
   WeInput({
     label,
@@ -42,7 +42,7 @@ class WeInput extends StatefulWidget {
     this.footer,
     this.clearable = false,
     this.textAlign = TextAlign.start,
-    this.keyboardType = TextInputType.text,
+    this.type = TextInputType.text,
     this.obscureText = false,
     this.style,
     this.autofocus = false,
@@ -131,7 +131,7 @@ class WeInputState extends State<WeInput> {
         child: TextField(
           autofocus: widget.autofocus,
           textAlign: widget.textAlign,
-          keyboardType: widget.keyboardType,
+          keyboardType: widget.type,
           obscureText: widget.obscureText,
           style: widget.style,
           controller: controller,

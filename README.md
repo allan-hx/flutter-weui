@@ -1,7 +1,7 @@
 # flutter_weui
 [![pub package](https://img.shields.io/pub/v/camera.svg)](https://pub.dartlang.org/packages/camera)
 
-#### 用flutter实现的weui框架
+#### 用flutter实现的weui框架, 实现了weui大部分的组件, 同时支持android 和 ios, 欢迎大家使用和交流
 
 ## 预览图
 <img src="./README/1.jpg" width="280px" />&nbsp;&nbsp;

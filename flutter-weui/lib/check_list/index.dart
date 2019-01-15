@@ -6,18 +6,18 @@ import '../theme.dart';
 import '../utils.dart';
 
 // onChane
-typedef OnChangeBack = void Function(List<dynamic> value);
+typedef OnChangeBack = void Function(List<String> value);
 
 // icon size
 final double _iconSize = 22.0;
 
 class WeChecklist extends StatefulWidget {
   // 选项
-  List<Map<String, Object>> options;
+  List<WeChecklistItem> children;
   // value
-  List<dynamic> value;
+  List<String> value;
   // 默认选中
-  List<dynamic> defaultValue;
+  List<String> defaultValue;
   // 排列方式
   String align;
   // onChange
@@ -32,7 +32,7 @@ class WeChecklist extends StatefulWidget {
   double _rightPadding;
 
   WeChecklist({
-    @required this.options,
+    @required this.children,
     value,
     this.defaultValue,
     this.align = 'left',
@@ -53,7 +53,7 @@ class WeChecklist extends StatefulWidget {
     }
 
     // 最多选择
-    this.max = max is int ? max : options.length; 
+    this.max = max is int ? max : children.length; 
   }
 
   @override
@@ -61,7 +61,7 @@ class WeChecklist extends StatefulWidget {
 }
 
 class _ChecklistState extends State<WeChecklist> {
-  List<dynamic> checkedList = [];
+  List<String> checkedList = [];
 
   @override
   void initState() {
@@ -69,16 +69,16 @@ class _ChecklistState extends State<WeChecklist> {
     this.checkedList = widget.defaultValue == null ? [] : widget.defaultValue;
   }
 
-  List<dynamic> getCheckedValue() {
+  List<String> getCheckedValue() {
     return widget.value == null ? checkedList : widget.value;
   }
 
   // change
   void change(item) {
-    final value = item['value'];
-    List<dynamic> checkedList = getCheckedValue();
+    final value = item.value;
+    List<String> checkedList = getCheckedValue();
     // 禁用
-    if (isTrue(item['disabled'])) return;
+    if (isTrue(item.disabled)) return;
     // 判断是否选中
     if (checkedList.indexOf(value) >= 0) {
       checkedList.remove(value);
@@ -98,11 +98,11 @@ class _ChecklistState extends State<WeChecklist> {
   }
 
   Widget renderIcon(item) {
-    List<dynamic> checkedList = getCheckedValue();
+    List<String> checkedList = getCheckedValue();
     // 是否选中
-    final bool isChecked = checkedList.indexOf(item['value']) >= 0;
+    final bool isChecked = checkedList.indexOf(item.value) >= 0;
     // 配置了禁用或者达到限制
-    final bool isDisabled = isTrue(item['disabled']) || (checkedList.length == widget.max && !isChecked);
+    final bool isDisabled = isTrue(item.disabled) || (checkedList.length == widget.max && !isChecked);
     final Color color = Color(0xffc9c9c9);
     Color borderColor;
     Color bgColor;
@@ -139,7 +139,7 @@ class _ChecklistState extends State<WeChecklist> {
   List<WeCell> renderList() {
     final List<WeCell> list = [];
 
-    widget.options.forEach((item) {
+    widget.children.forEach((item) {
       List<Widget> children;
       // 图标
       final icon = Padding(
@@ -151,8 +151,8 @@ class _ChecklistState extends State<WeChecklist> {
         flex: 1,
         child: Container(
           child: Opacity(
-            opacity: isTrue(item['disabled']) ? 0.65 : 1.0,
-            child: toTextWidget(item['label'], 'label')
+            opacity: isTrue(item.disabled) ? 0.65 : 1.0,
+            child: toTextWidget(item.label, 'label')
           )
         )
       );
@@ -189,4 +189,16 @@ class _ChecklistState extends State<WeChecklist> {
       children: renderList()
     );
   }
+}
+
+class WeChecklistItem {
+  final dynamic label;
+  final String value;
+  final bool disabled;
+
+  WeChecklistItem({
+    @required this.label,
+    @required this.value,
+    this.disabled = false
+  });
 }

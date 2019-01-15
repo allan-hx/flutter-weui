@@ -26,6 +26,12 @@ class _SliderPageState extends State {
             TextTitle('默认', noPadding: true),
             // 默认
             WeSlider(),
+            TextTitle('禁用', noPadding: true),
+            // 默认
+            WeSlider(
+              defaultValue: 20,
+              disabled: true
+            ),
             TextTitle('自定义外观', noPadding: true),
             // 自定义外观
             WeSlider(

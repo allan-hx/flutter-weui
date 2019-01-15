@@ -46,7 +46,7 @@ class CallPage extends StatelessWidget {
           WeCell(
             label: '带icon',
             content: '内容',
-            footer: Icon(IconData(0xe66b, fontFamily: 'iconfont'))
+            footer: Icon(WeIcons.clear)
           ),
           WeCell(
             label: '标题文字',

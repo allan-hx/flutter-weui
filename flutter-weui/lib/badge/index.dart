@@ -43,7 +43,7 @@ class WeBadgeState extends State<WeBadge> {
           decoration: BoxDecoration(
             color: boxColor,
             borderRadius: BorderRadius.all(Radius.circular(20.0)),
-            border: border
+            border: widget.border == null ? border : widget.border
             // border: Bo
           ),
           child: Padding(

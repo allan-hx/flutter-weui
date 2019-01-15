@@ -6,17 +6,17 @@ import '../theme.dart';
 import '../utils.dart';
 
 // onChane
-typedef changeBack = void Function(dynamic value);
+typedef changeBack = void Function(String value);
 // icon size
 final double _iconSize = 24.0;
 
 class WeRadiolist extends StatefulWidget {
   // 选项
-  List<Map<String, Object>> options = [];
+  List<WeRadiolistItem> children = [];
   // value
-  dynamic value;
+  String value;
   // defaultValue
-  dynamic defaultValue;
+  String defaultValue;
   // 排列方式
   String align = '';
   // onChange
@@ -29,7 +29,7 @@ class WeRadiolist extends StatefulWidget {
   double _rightPadding;
 
   WeRadiolist({
-    @required this.options,
+    @required this.children,
     this.value,
     this.defaultValue,
     this.align = 'right',
@@ -62,10 +62,10 @@ class _RadiolistState extends State<WeRadiolist> {
   }
 
   // change
-  void change(item) {
-    final value = item['value'];
+  void change(WeRadiolistItem item) {
+    final value = item.value;
     // 禁用
-    if (isTrue(item['disabled'])) return;
+    if (isTrue(item.disabled)) return;
     if (widget.value == null) {
       setState(() {
         checked = value;
@@ -77,11 +77,11 @@ class _RadiolistState extends State<WeRadiolist> {
     }
   }
 
-  Widget renderIcon(item) {
+  Widget renderIcon(WeRadiolistItem item) {
     // 是否选中
-    final bool isChecked = getCheckedValue() == item['value'];
+    final bool isChecked = getCheckedValue() == item.value;
     // 配置了禁用或者达到限制
-    final bool isDisabled = isTrue(item['disabled']);
+    final bool isDisabled = isTrue(item.disabled);
     final Color color = Color(0xffc9c9c9);
 
     return Container(
@@ -101,7 +101,7 @@ class _RadiolistState extends State<WeRadiolist> {
   List<WeCell> renderList() {
     final List<WeCell> list = [];
 
-    widget.options.forEach((item) {
+    widget.children.forEach((item) {
       List<Widget> children;
       // 图标
       final icon = Padding(
@@ -113,8 +113,8 @@ class _RadiolistState extends State<WeRadiolist> {
         flex: 1,
         child: Container(
           child: Opacity(
-            opacity: isTrue(item['disabled']) ? 0.65 : 1.0,
-            child: toTextWidget(item['label'], 'label')
+            opacity: isTrue(item.disabled) ? 0.65 : 1.0,
+            child: toTextWidget(item.label, 'label')
           )
         )
       );
@@ -151,3 +151,16 @@ class _RadiolistState extends State<WeRadiolist> {
     );
   }
 }
+
+class WeRadiolistItem {
+  final dynamic label;
+  final String value;
+  final bool disabled;
+
+  WeRadiolistItem({
+    @required this.label,
+    @required this.value,
+    this.disabled = false
+  });
+}
+
