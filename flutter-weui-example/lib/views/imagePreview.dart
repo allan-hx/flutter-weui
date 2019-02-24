@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../layout/sample.dart';
-import 'package:flutter_weui/flutter_weui.dart';
+import 'package:weui/weui.dart';
 
 final Widget box = SizedBox(height: 20.0);
 final List<String> images = [

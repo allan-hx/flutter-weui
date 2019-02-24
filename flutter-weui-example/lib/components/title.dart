@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TextTitle extends StatelessWidget {
-  String title = '';
-  bool noPadding;
+  final String title;
+  final bool noPadding;
 
   TextTitle(this.title, { this.noPadding = false });
 

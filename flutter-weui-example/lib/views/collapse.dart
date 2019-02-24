@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../layout/sample.dart';
-import 'package:flutter_weui/flutter_weui.dart';
+import 'package:weui/weui.dart';
 import '../components/title.dart';
 
 class CollapsePage extends StatefulWidget {
@@ -9,8 +9,6 @@ class CollapsePage extends StatefulWidget {
 }
 
 class CollapsePageState extends State {
-  int index = 0;
-
   @override
   Widget build(BuildContext context) {
     final List<WeCollapseItem> options = [];
@@ -36,7 +34,7 @@ class CollapsePageState extends State {
           ),
           TextTitle('设置默认展示'),
           WeCollapse(
-            defaultActive: ['一'],
+            defaultActive: ['1'],
             children: options
           ),
           TextTitle('卡片方式'),
@@ -44,17 +42,17 @@ class CollapsePageState extends State {
             card: true,
             children: options
           ),
-          TextTitle('onChange'),
-          WeCollapse(
-            children: options,
-            onChange: (value) {
-              WeToast.info(context)('当前打开的：' + value.toString());
-            }
-          ),
           TextTitle('手风琴模式'),
           WeCollapse(
             accordion: true,
             children: options
+          ),
+          TextTitle('onChange'),
+          WeCollapse(
+            children: options,
+            onChange: (List<String> value) {
+              WeToast.info(context)('当前打开的：' + value.toString());
+            }
           )
         ]
       )

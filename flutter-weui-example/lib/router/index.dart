@@ -28,7 +28,7 @@ final routes = <String, WidgetBuilder>{
   // checklist
   '/checklist': (_) => ChecklistPage(),
   // radio list
-  '/radio-list': (_) => RadioListPage(),
+  '/radiolist': (_) => RadioListPage(),
   // icon
   '/icon': (_) => WeIconsPage(),
   // slider

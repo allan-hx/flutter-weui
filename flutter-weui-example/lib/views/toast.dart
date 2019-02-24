@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../layout/sample.dart';
-import 'package:flutter_weui/flutter_weui.dart';
+import 'package:weui/weui.dart';
 import '../components/title.dart';
 
 final Widget rowBox = SizedBox(height: 15);
@@ -55,7 +55,7 @@ class ToastPage extends StatelessWidget {
           rowBox,
           TextTitle('其他提示', noPadding: true),
           WeButton('loading', theme: WeButtonType.primary, onClick: () {
-            final close = WeToast.loading(context)(
+            final Function close = WeToast.loading(context)(
               message: '加载中...'
             );
             // 五秒后关闭

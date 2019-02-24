@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../layout/sample.dart';
-import 'package:flutter_weui/flutter_weui.dart';
+import 'package:weui/weui.dart';
 import '../components/title.dart';
-import 'package:flutter_weui/theme.dart';
+import 'package:weui/theme.dart';
 
 Widget box(Widget child) {
   return Padding(

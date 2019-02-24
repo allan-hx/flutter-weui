@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_weui/flutter_weui.dart';
+import 'package:weui/weui.dart';
 import '../layout/sample.dart';
 import '../components/title.dart';
 
@@ -42,7 +42,13 @@ class NoticeBarPage extends StatelessWidget {
                 child
               ]
             )
-          )
+          ),
+          TextTitle('自定义颜色和背景'),
+          WeNoticeBar(
+            child: child,
+            fontColor: Color(0xffffffff),
+            color: Color(0xffF64E37)
+          ),
         ]
       )
     );

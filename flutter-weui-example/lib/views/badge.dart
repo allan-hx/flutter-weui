@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../layout/sample.dart';
-import 'package:flutter_weui/flutter_weui.dart';
+import 'package:weui/weui.dart';
 import '../components/title.dart';
-import 'package:flutter_weui/theme.dart';
+import 'package:weui/theme.dart';
 
 class BadgePage extends StatefulWidget {
   @override
@@ -21,16 +21,16 @@ class BadgePageState extends State {
           TextTitle('默认', noPadding: true),
           Row(
             children: [
-              WeBadge(value: '1'),
+              WeBadge(child: '1'),
               Padding(
                 padding: EdgeInsets.only(left: 8.0),
-                child: WeBadge(value: 'value')
+                child: WeBadge(child: 'value')
               )
             ]
           ),
           TextTitle('自定义样式', noPadding: true),
           WeBadge(
-            value: 'Value',
+            child: 'Value',
             color: primary,
             textStyle: TextStyle(
               fontSize: 14.0
@@ -38,16 +38,16 @@ class BadgePageState extends State {
           ),
           TextTitle('边框', noPadding: true),
           WeBadge(
-            value: 'Value',
+            child: 'Value',
             border: Border.all(width: 1, color: Colors.black)
           ),
           TextTitle('空心', noPadding: true),
           Row(
             children: [
-              WeBadge(value: '1', hollow: true),
+              WeBadge(child: '1', hollow: true),
               Padding(
                 padding: EdgeInsets.only(left: 8.0),
-                child: WeBadge(value: 'value', hollow: true)
+                child: WeBadge(child: 'value', hollow: true)
               )
             ]
           ),

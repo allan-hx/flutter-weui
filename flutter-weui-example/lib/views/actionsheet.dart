@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
 import '../layout/sample.dart';
-import 'package:flutter_weui/flutter_weui.dart';
+import 'package:weui/weui.dart';
 
-final list = [
-  Text('选项一'),
-  Text('选项二'),
-  Text('选项三')
+// final list = [
+//   Text('选项一'),
+//   Text('选项二'),
+//   Text('选项三')
+// ];
+
+final options = [
+  WeActionsheetItem(
+    label: '选项一',
+    value: '1'
+  ),
+  WeActionsheetItem(
+    label: '选项二',
+    value: '2'
+  ),
+  WeActionsheetItem(
+    label: '选项三',
+    value: '3'
+  )
 ];
 
 class ActionsheetPage extends StatelessWidget {
@@ -21,9 +36,9 @@ class ActionsheetPage extends StatelessWidget {
         children: <Widget>[
           WeButton('android', theme: WeButtonType.primary, onClick: () {
             actionsheetAndroid(
-              childer: list,
-              onChange: (int index) {
-                WeToast.info(context)('选择了第${index + 1}个');
+              options: options,
+              onChange: (String value) {
+                WeToast.info(context)('选择了$value');
               },
               onClose: () {
                 WeToast.info(context)('关闭');
@@ -34,10 +49,10 @@ class ActionsheetPage extends StatelessWidget {
           WeButton('ios', theme: WeButtonType.primary, onClick: () {
             actionsheetIos(
               title: '请选择',
-              childer: list,
+              options: options,
               cancelButton: '取消',
-              onChange: (int index) {
-                WeToast.info(context)('选择了第${index + 1}个');
+              onChange: (String value) {
+                WeToast.info(context)('选择了$value');
               },
               onClose: () {
                 WeToast.info(context)('关闭');
@@ -48,9 +63,9 @@ class ActionsheetPage extends StatelessWidget {
           WeButton('ios 无取消按钮', theme: WeButtonType.primary, onClick: () {
             actionsheetIos(
               title: '请选择',
-              childer: list,
-              onChange: (int index) {
-                WeToast.info(context)('选择了第${index + 1}个');
+              options: options,
+              onChange: (String value) {
+                WeToast.info(context)('选择了$value');
               },
               onClose: () {
                 WeToast.info(context)('关闭');
@@ -60,10 +75,10 @@ class ActionsheetPage extends StatelessWidget {
           Container(height: 20.0),
           WeButton('android 禁止遮罩层点击', theme: WeButtonType.primary, onClick: () {
             actionsheetAndroid(
-              childer: list,
+              options: options,
               maskClosable: false,
-              onChange: (int index) {
-                WeToast.info(context)('选择了第${index + 1}个');
+              onChange: (String value) {
+                WeToast.info(context)('选择了$value');
               },
               onClose: () {
                 WeToast.info(context)('关闭');
@@ -74,11 +89,11 @@ class ActionsheetPage extends StatelessWidget {
           WeButton('ios 禁止遮罩层点击', theme: WeButtonType.primary, onClick: () {
             actionsheetIos(
               title: '请选择',
-              childer: list,
+              options: options,
               maskClosable: false,
               cancelButton: '取消',
-              onChange: (int index) {
-                WeToast.info(context)('选择了第${index + 1}个');
+              onChange: (String value) {
+                WeToast.info(context)('选择了$value');
               },
               onClose: () {
                 WeToast.info(context)('关闭');

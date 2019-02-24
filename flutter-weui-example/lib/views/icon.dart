@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_weui/flutter_weui.dart';
+import 'package:weui/weui.dart';
 import '../layout/sample.dart';
 
 Widget _renderIcon (icon, { @required color, @required title, @required describe }) {

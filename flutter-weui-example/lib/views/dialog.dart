@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../layout/sample.dart';
-import 'package:flutter_weui/flutter_weui.dart';
+import 'package:weui/weui.dart';
 import '../components/title.dart';
 
 class DialogPage extends StatelessWidget {
@@ -60,7 +60,7 @@ class DialogPage extends StatelessWidget {
           WeButton('alert', theme: WeButtonType.primary, onClick: () {
             WeDialog.alert(context)(
               '弹窗内容',
-              theme: 'android',
+              theme: WeDialogTheme.android,
               onConfirm: () {
                 WeToast.info(context)('点击了确认');
               }
@@ -71,7 +71,7 @@ class DialogPage extends StatelessWidget {
             WeDialog.alert(context)(
               '弹窗内容',
               title: null,
-              theme: 'android',
+              theme: WeDialogTheme.android,
               onConfirm: () {
                 WeToast.info(context)('点击了确认');
               }
@@ -81,7 +81,7 @@ class DialogPage extends StatelessWidget {
           WeButton('confirm', theme: WeButtonType.primary, onClick: () {
             WeDialog.confirm(context)(
               '弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内',
-              theme: 'android',
+              theme: WeDialogTheme.android,
               onCancel: () {
                 WeToast.info(context)('点击了取消');
               },
@@ -94,7 +94,7 @@ class DialogPage extends StatelessWidget {
           WeButton('confirm - 无标题', theme: WeButtonType.primary, onClick: () {
             WeDialog.confirm(context)(
               '弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内',
-              theme: 'android',
+              theme: WeDialogTheme.android,
               title: null,
               onCancel: () {
                 WeToast.info(context)('点击了取消');

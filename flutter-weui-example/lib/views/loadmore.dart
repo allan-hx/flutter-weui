@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../layout/sample.dart';
-import 'package:flutter_weui/flutter_weui.dart';
+import 'package:weui/weui.dart';
 
 class Loadmore extends StatefulWidget {
   @override
@@ -19,13 +19,13 @@ class LoadmorePageState extends State {
         children: <Widget>[
           WeLoadmore(
             loading: true,
-            loadingChild: Text('加载中...')
+            loadingChild: Text('自定义加载中内容...')
           ),
           Padding(
             padding: EdgeInsets.only(top: 20.0)
           ),
           WeLoadmore(
-            moreChild: Text('加载更多...')
+            moreChild: Text('自定义加载更多内容...')
           )
         ]
       )

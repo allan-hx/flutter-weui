@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_weui/flutter_weui.dart';
-import 'package:flutter_weui/theme.dart';
+import 'package:weui/weui.dart';
+import 'package:weui/theme.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 
 class Index extends StatefulWidget {
@@ -131,7 +131,7 @@ class IndexState extends State {
   ];
 
   // 二维码
-  Future scan() async {
+  void scan() async {
     final toast = WeToast.info(context);
     try {
       final String url = await BarcodeScanner.scan();
