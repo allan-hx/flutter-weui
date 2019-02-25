@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:weui/weui.dart';
 import 'package:weui/theme.dart';
 import 'package:barcode_scan/barcode_scan.dart';
+import '../router/index.dart';
 
 class Index extends StatefulWidget {
   @override
@@ -135,7 +136,11 @@ class IndexState extends State {
     final toast = WeToast.info(context);
     try {
       final String url = await BarcodeScanner.scan();
-      Navigator.of(context).pushNamed(url);
+      if (routes[url] == null) {
+        toast('二维码错误, 请扫描文档上的二维码');
+      } else {
+        Navigator.of(context).pushNamed(url);
+      }
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
         toast('请授权相机权限');
