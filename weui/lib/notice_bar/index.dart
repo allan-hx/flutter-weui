@@ -18,7 +18,7 @@ class WeNoticeBar extends StatefulWidget {
   // 是否可关闭
   final bool closeable;
   // 内容
-  final Widget child;
+  final dynamic child;
 
   WeNoticeBar({
     this.fontColor = _fontColor,
@@ -34,12 +34,16 @@ class WeNoticeBar extends StatefulWidget {
 }
 
 class NoticeBarState extends State<WeNoticeBar> with TickerProviderStateMixin {
-    // bar容器key
+  // bar容器key
   GlobalKey _barKey = GlobalKey();
   // box
   GlobalKey _boxKey = GlobalKey();
+  // 最大值
+  double _maxLeft;
+  double _boxWidth;
   // padding
   final double _boxPadding = 5.0;
+  double _left = 0;
   // 动画
   AnimationController controller;
   Animation transform;
@@ -53,22 +57,39 @@ class NoticeBarState extends State<WeNoticeBar> with TickerProviderStateMixin {
   }
 
   void init(Duration time) {
-    final double _barWidth = _barKey.currentContext.size.width;
-    final double _boxWidth = _boxKey.currentContext.size.width;
-
-    // 判断内容和容器的宽度
-    if (_barWidth > _boxWidth) {
+    _maxLeft = _barKey.currentContext.size.width;
+    _boxWidth = _boxKey.currentContext.size.width;
+    // 判断是否滚动
+    if (_maxLeft > _boxWidth) {
+      // 初始化动画
       controller = AnimationController(
-        vsync: this,
         duration: Duration(milliseconds: widget.duration),
-      );
-      transform = Tween<double>(begin: 1, end: -1)
-        .animate(controller)
-        ..addListener(() {
-          setState(() {});
-        });
-      controller.repeat();
+        vsync: this
+      )
+      ..repeat();
+      createAnimate(0.0, -_maxLeft);
     }
+  }
+
+  // 创建动画
+  void createAnimate(double start, double end) {
+    transform = Tween<double>(begin: start, end: end)
+      .animate(
+        CurvedAnimation(
+          parent: controller,
+          curve: Curves.linear
+        )
+      )
+      ..addListener(() {
+        setState(() {
+          if (-(_maxLeft - 1) >= transform.value) {
+            _left = _boxWidth;
+            createAnimate(_boxWidth, -_maxLeft);
+          } else {
+            _left = transform.value;
+          }
+        });
+      });
   }
 
   // 关闭
@@ -101,30 +122,28 @@ class NoticeBarState extends State<WeNoticeBar> with TickerProviderStateMixin {
       Expanded(
         key: _boxKey,
         flex: 1,
-        child: ClipRect(
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                top: 0,
-                left: 0,
-                bottom: 0,
-                child: Align(
-                  key: _barKey,
-                  alignment: Alignment.centerLeft,
-                  child: FractionalTranslation(
-                    translation: Offset(transform == null ? 0 : transform.value, 0),
-                    child: DefaultTextStyle(
-                      style: TextStyle(
-                        color: widget.fontColor,
-                        fontSize: 14.0
-                      ),
-                      child: widget.child
-                    )
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+              top: 0,
+              left: 0,
+              bottom: 0,
+              child: Align(
+                key: _barKey,
+                alignment: Alignment.centerLeft,
+                child: DefaultTextStyle(
+                  style: TextStyle(
+                    color: widget.fontColor,
+                    fontSize: 14.0
+                  ),
+                  child: Transform.translate(
+                    offset: Offset(_left, 0.0),
+                    child: widget.child
                   )
                 )
               )
-            ]
-          )
+            )
+          ]
         )
       )
     ];

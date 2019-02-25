@@ -4,6 +4,18 @@ import './android_widget.dart';
 import '../theme.dart';
 import './ios_widget.dart';
 
+// 弹窗
+typedef Alert = Function(dynamic message, {
+  // 标题
+  dynamic title,
+  // 主题
+  WeDialogTheme theme,
+  // 按钮
+  dynamic button,
+  // 回调
+  Function onConfirm
+});
+
 // 确认框
 typedef Confirm = Function(dynamic message, {
   // 标题
@@ -18,18 +30,6 @@ typedef Confirm = Function(dynamic message, {
   Function onConfirm,
   // 取消事件
   Function onCancel
-});
-
-// 弹窗
-typedef Alert = Function(dynamic message, {
-  // 标题
-  dynamic title,
-  // 主题
-  WeDialogTheme theme,
-  // 按钮
-  dynamic button,
-  // 回调
-  Function onConfirm
 });
 
 enum WeDialogTheme {
