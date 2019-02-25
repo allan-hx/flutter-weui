@@ -2,7 +2,9 @@
 
 #### 用flutter实现的weui框架, 实现了weui大部分的组件, 同时支持android 和 ios, 欢迎大家使用和交流
 
-## app 案例下载(https://github.com/allan-hx/flutter-weui/releases/download/v0.0.1/app-release.apk)
+## app下载
+- ## [android](https://github.com/allan-hx/flutter-weui/releases/download/v0.0.1/app-release.apk)
+- ## ios 暂无下载地址, 需手动执行安装
 
 ## 预览图
 <img src="./README/1.jpg" width="280px" />&nbsp;&nbsp;
