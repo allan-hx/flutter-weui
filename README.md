@@ -6,6 +6,8 @@
 - ### [android](https://github.com/allan-hx/flutter-weui/releases/download/v0.0.1/app-release.apk)
 - ### ios 暂无下载地址, 需手动执行安装
 
+## [文档](https://allan-hx.github.io/flutter-weui-doc/index.html)
+
 ## 预览图
 <img src="./README/1.jpg" width="280px" />&nbsp;&nbsp;
 <img src="./README/2.jpg" width="280px" />
@@ -16,7 +18,7 @@
 
 ## 安装
 ```
-flutter_weui: 0.0.1
+weui: 0.0.1
 ```
 
 ## 如何运行案例
