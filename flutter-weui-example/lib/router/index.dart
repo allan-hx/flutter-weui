@@ -19,6 +19,7 @@ import '../views/collapse.dart';
 import '../views/imagePreview.dart';
 import '../views/noticeBar.dart';
 import '../views/switch.dart';
+import '../views/tip.dart';
 
 final routes = <String, WidgetBuilder>{
   // 按钮
@@ -60,5 +61,7 @@ final routes = <String, WidgetBuilder>{
   // noticeBar
   '/noticeBar': (_) => NoticeBarPage(),
   // switch
-  '/switch': (_) => SwitchPage()
+  '/switch': (_) => SwitchPage(),
+  // tip
+  '/tip': (_) => TipPage()
 };

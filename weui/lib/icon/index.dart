@@ -22,4 +22,6 @@ class WeIcons {
   static const IconData down = IconData(0xe609, fontFamily: fontFamily, fontPackage: fontPackage);
   // del
   static const IconData del = IconData(0xe74c, fontFamily: fontFamily, fontPackage: fontPackage);
+  // 三角形
+  static const IconData triangle = IconData(0xe6b4, fontFamily: fontFamily, fontPackage: fontPackage);
 }

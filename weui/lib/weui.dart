@@ -44,3 +44,5 @@ export './image_preview/index.dart';
 export './notice_bar/index.dart';
 // Switch
 export './switch/index.dart';
+// WeTip
+export './tip/index.dart';
