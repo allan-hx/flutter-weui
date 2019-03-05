@@ -46,7 +46,8 @@ class WeTipState extends State<WeTip> {
         boxContext: _boxKey.currentContext,
         placement: widget.placement,
         child: widget.content
-      )
+      ),
+      willPopCallback: close
     );
   }
 
@@ -106,7 +107,7 @@ class _WeTipWidget extends StatelessWidget {
         offset = Offset(-0.5, -1);
         // 三角形
         triangleOffset = offset;
-        triangleTop = boxOffset.dy;
+        triangleTop = boxOffset.dy + 2;
         triangleLeft = left;
         angle = math.pi;
         break;
@@ -118,7 +119,7 @@ class _WeTipWidget extends StatelessWidget {
         // 三角形
         triangleOffset = offset;
         triangleTop = top;
-        triangleLeft = boxOffset.dx + size.width;
+        triangleLeft = boxOffset.dx + size.width - 2;
         angle = (math.pi / 2) * 3;
         break;
       // bottom
@@ -128,7 +129,7 @@ class _WeTipWidget extends StatelessWidget {
         offset = Offset(-0.5, 0);
         // 三角形
         triangleOffset = offset;
-        triangleTop = boxOffset.dy + size.height;
+        triangleTop = boxOffset.dy + size.height - 2;
         triangleLeft = left;
         angle = 0;
         break;
@@ -140,7 +141,7 @@ class _WeTipWidget extends StatelessWidget {
         // 三角形
         triangleOffset = offset;
         triangleTop = top;
-        triangleLeft = boxOffset.dx;
+        triangleLeft = boxOffset.dx + 2;
         angle = math.pi / 2;
         break;
     }
@@ -194,7 +195,7 @@ class _WeTipWidget extends StatelessWidget {
             translation: triangleOffset,
             child: Transform.rotate(
               angle: angle,
-              child: Icon(WeIcons.triangle, color: _color, size: 16)
+              child: Icon(WeIcons.triangle, color: _color, size: 14)
             )
           )
         )

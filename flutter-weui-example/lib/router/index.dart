@@ -20,6 +20,7 @@ import '../views/imagePreview.dart';
 import '../views/noticeBar.dart';
 import '../views/switch.dart';
 import '../views/tip.dart';
+import '../views/notify.dart';
 
 final routes = <String, WidgetBuilder>{
   // 按钮
@@ -63,5 +64,7 @@ final routes = <String, WidgetBuilder>{
   // switch
   '/switch': (_) => SwitchPage(),
   // tip
-  '/tip': (_) => TipPage()
+  '/tip': (_) => TipPage(),
+  // notify
+  '/notify': (_) => NotifyPage()
 };

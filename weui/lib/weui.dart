@@ -46,3 +46,5 @@ export './notice_bar/index.dart';
 export './switch/index.dart';
 // WeTip
 export './tip/index.dart';
+// WeNotify
+export './notify/index.dart';

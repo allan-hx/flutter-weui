@@ -18,7 +18,7 @@ class SwipePageState extends State {
           SizedBox(
             height: 50,
             child: WeTip(
-              content:Text('这是一个 tip'),
+              content: Text('这是一个 tip'),
               child: WeBadge(
                 child: 'top',
               )
@@ -28,7 +28,7 @@ class SwipePageState extends State {
             height: 50,
             child: WeTip(
               placement: WeTipPlacement.right,
-              content:Text('这是一个tip'),
+              content: Text('这是一个tip'),
               child: WeBadge(
                 child: 'right',
               )
@@ -38,7 +38,7 @@ class SwipePageState extends State {
             // height: 50,
             child: WeTip(
               placement: WeTipPlacement.bottom,
-              content:Text('这是一个 tip'),
+              content: Text('这是一个 tip'),
               child: WeBadge(
                 child: 'bottom',
               )
@@ -48,7 +48,7 @@ class SwipePageState extends State {
             height: 50,
             child: WeTip(
               placement: WeTipPlacement.left,
-              content:Text('这是一个 tip'),
+              content: Text('这是一个 tip'),
               child: WeBadge(
                 child: 'left',
               )

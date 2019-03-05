@@ -100,10 +100,6 @@ class IndexState extends State {
         {
           'title': 'noticeBar',
           'url': '/noticeBar'
-        },
-        {
-          'title': 'tip',
-          'url': '/tip'
         }
       ]
     },
@@ -130,6 +126,13 @@ class IndexState extends State {
         {
           'title': 'Toast',
           'url': '/toast'
+        },{
+          'title': 'notify',
+          'url': '/notify'
+        },
+        {
+          'title': 'tip',
+          'url': '/tip'
         }
       ]
     }

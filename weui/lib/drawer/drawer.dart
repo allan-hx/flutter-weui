@@ -38,11 +38,6 @@ class DrawerWidgetState extends State<DrawerWidget> with TickerProviderStateMixi
   // 是否垂直
   bool isVertical;
 
-  // 反向执行动画
-  reverseAnimation() async {
-    await controller.reverse();
-  }
-
   @override
   void initState() {
     super.initState();
@@ -67,6 +62,11 @@ class DrawerWidgetState extends State<DrawerWidget> with TickerProviderStateMixi
 
   void getBoxHeight(Duration time) {
     initAnimation();
+  }
+
+  // 反向执行动画
+  reverseAnimation() async {
+    await controller.reverse();
   }
 
   // 初始化动画
