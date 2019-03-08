@@ -72,6 +72,9 @@ class WeInputState extends State<WeInput> {
   // 清除value
   void _clearValue() {
     _setValue('');
+    if (widget.onChange is Function) {
+      widget.onChange('');
+    }
   }
 
   // 输入框onChange

@@ -3,23 +3,25 @@ import '../theme.dart';
 
 // 边框
 const Divider _border = Divider(height: 1, color: defaultBorderColor);
-// left padding
-const double _padding = 20.0;
+// 间距
+const double _spacing = 20.0;
 
 class WeCells extends StatelessWidget {
-  List<Widget> children;
   final bool boxBorder;
+  final double spacing;
+  List<Widget> children;
 
   WeCells({
     this.boxBorder = true,
-    @required children
+    this.spacing = _spacing,
+    @required children,
   }) {
     final List<Widget> newChildren = [];
     children.forEach((item) {
       if (item != children[0]) {
         newChildren.add(
           Padding(
-            padding: EdgeInsets.only(left: _padding),
+            padding: EdgeInsets.only(left: spacing),
             child: _border
           )
         );
@@ -58,6 +60,8 @@ class WeCell extends StatelessWidget {
   final Widget footer;
   // 对齐方式
   final Alignment align;
+  // 间距
+  final double spacing;
   // 最小高度
   final double minHeight;
   // 点击
@@ -68,6 +72,7 @@ class WeCell extends StatelessWidget {
     content,
     this.footer,
     this.align = Alignment.centerRight,
+    this.spacing = _spacing,
     this.minHeight = 46.0,
     this.onClick
   }) {
@@ -141,7 +146,7 @@ class WeCell extends StatelessWidget {
           color: Colors.black
         ),
         child: Padding(
-          padding: EdgeInsets.only(left: _padding, right: _padding),
+          padding: EdgeInsets.only(left: spacing, right: spacing),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: children
