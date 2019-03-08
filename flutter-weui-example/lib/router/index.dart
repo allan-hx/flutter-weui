@@ -21,6 +21,7 @@ import '../views/noticeBar.dart';
 import '../views/switch.dart';
 import '../views/tip.dart';
 import '../views/notify.dart';
+import '../views/picker_view.dart';
 
 final routes = <String, WidgetBuilder>{
   // 按钮
@@ -66,5 +67,7 @@ final routes = <String, WidgetBuilder>{
   // tip
   '/tip': (_) => TipPage(),
   // notify
-  '/notify': (_) => NotifyPage()
+  '/notify': (_) => NotifyPage(),
+  // pickView
+  '/picker_view': (_) => PickerViewPage()
 };

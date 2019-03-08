@@ -38,10 +38,6 @@ class IndexState extends State {
           'url': '/input'
         },
         {
-          'title': 'Cell',
-          'url': '/cell'
-        },
-        {
           'title': 'Slider',
           'url': '/slider'
         },
@@ -52,7 +48,11 @@ class IndexState extends State {
         {
           'title': 'Switch',
           'url': '/switch'
-        }
+        },
+        // {
+        //   'title': 'PickerView',
+        //   'url': '/picker_view'
+        // }
       ]
     },
     {
@@ -62,6 +62,10 @@ class IndexState extends State {
         {
           'title': 'Badge',
           'url': '/badge'
+        },
+        {
+          'title': 'Cell',
+          'url': '/cell'
         },
         {
           'title': 'Grid',
@@ -118,10 +122,6 @@ class IndexState extends State {
         {
           'title': 'Dialog',
           'url': '/dialog'
-        },
-        {
-          'title': 'Picker',
-          'url': null
         },
         {
           'title': 'Toast',
