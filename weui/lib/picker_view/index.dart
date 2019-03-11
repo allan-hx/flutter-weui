@@ -8,7 +8,7 @@ class  WePickerView extends StatefulWidget {
 
   WePickerView({
     itemCount = 5,
-    this.itemHeight = 45,
+    this.itemHeight = 35,
     @required this.children
   }) : assert(itemCount % 2 == 1), this.itemCount = itemCount;
 
@@ -93,8 +93,7 @@ class WePickerViewState extends State<WePickerView> {
                             height: widget.itemHeight,
                             child: DefaultTextStyle(
                               style: TextStyle(
-                                fontSize: 16,// Colors.black : 
-                                // color: Color(0xff969799)
+                                fontSize: 16,
                                 color: Colors.black
                               ),
                               child: Align(

@@ -11,8 +11,8 @@ class NotifyPageState extends State {
   @override
   Widget build(BuildContext context) {
     return Sample(
-      'Drawer',
-      describe: '抽屉',
+      'WeNotify',
+      describe: '通知',
       child: Column(
         children: [
           WeButton('success', theme: WeButtonType.primary, onClick: () {

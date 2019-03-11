@@ -49,10 +49,10 @@ class IndexState extends State {
           'title': 'Switch',
           'url': '/switch'
         },
-        // {
-        //   'title': 'PickerView',
-        //   'url': '/picker_view'
-        // }
+        {
+          'title': 'PickerView',
+          'url': '/picker_view'
+        }
       ]
     },
     {

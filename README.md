@@ -36,8 +36,3 @@ flutter packages get
 ```
 flutter run
 ```
-
-## 后续计划
-- [x] 文档编写
-- [ ] 代码优化
-- [ ] pick和upload组件开发
