@@ -31,6 +31,12 @@ class ProgressState extends State {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    timer?.cancel();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Sample(
       'Progress',

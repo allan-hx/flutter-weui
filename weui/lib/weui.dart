@@ -1,5 +1,7 @@
 library weui;
 
+// WeUi
+export './theme/index.dart';
 // Weanimation
 export './animation/index.dart';
 // WeButton
