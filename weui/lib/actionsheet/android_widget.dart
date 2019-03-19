@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../theme/index.dart';
 import './utils.dart';
 
 class AndroidWidget extends StatefulWidget {
@@ -24,6 +24,7 @@ class AndroidWidgetState extends State<AndroidWidget> with SingleTickerProviderS
   AnimationController _controller;
   Animation<double> _animation;
   int _index;
+  WeTheme theme;
 
   @override
   void initState() {
@@ -43,6 +44,12 @@ class AndroidWidgetState extends State<AndroidWidget> with SingleTickerProviderS
 
     // 播放
     _controller.forward();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    theme = WeUi.getTheme(context);
   }
 
   // 动画监听
@@ -78,7 +85,7 @@ class AndroidWidgetState extends State<AndroidWidget> with SingleTickerProviderS
         },
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: maskColor
+            color: theme.maskColor
           ),
           child: Align(
             alignment: Alignment.center,
@@ -91,7 +98,7 @@ class AndroidWidgetState extends State<AndroidWidget> with SingleTickerProviderS
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: initChilder(widget.childer, itemClick, align: Alignment.centerLeft)
+                  children: initChilder(widget.childer, itemClick, theme.defaultBorderColor, align: Alignment.centerLeft)
                 )
               )
             )

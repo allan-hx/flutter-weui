@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import '../animation/fade_in.dart';
 import '../animation/scale.dart';
-import '../theme.dart';
 
 final double boxPadding = 25.0;
 
 layoutHoc({
   @required GlobalKey scaleKey,
   @required GlobalKey fadeInKey,
-  @required List<Widget> children
+  @required List<Widget> children,
+  @required Color maskColor
 }) {
   return FadeIn(
     key: fadeInKey,

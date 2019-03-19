@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../utils.dart';
 import './utils.dart';
-import '../theme.dart';
+import '../theme/index.dart';
 
 class IosWidget extends StatefulWidget {
   final dynamic title;
@@ -37,6 +37,8 @@ class IosWidgetState extends State<IosWidget> with TickerProviderStateMixin {
   Animation<double> top;
   // 高度
   Animation<double> opacity;
+  // 主题
+  WeTheme theme;
 
   @override
   void initState() {
@@ -46,6 +48,12 @@ class IosWidgetState extends State<IosWidget> with TickerProviderStateMixin {
       vsync: this
     );
     WidgetsBinding.instance.addPostFrameCallback(getBoxHeight);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    theme = WeUi.getTheme(context);
   }
 
   // 获取容器高度
@@ -161,11 +169,11 @@ class IosWidgetState extends State<IosWidget> with TickerProviderStateMixin {
     // 判断标题
     if (widget.title != null) {
       list.add(renderTitle());
-      list.add(border);
+      list.add(Divider(height: 1, color: theme.defaultBorderColor));
     }
 
     // 选项
-    list.addAll(initChilder(widget.childer, itemClick));
+    list.addAll(initChilder(widget.childer, itemClick, theme.defaultBorderColor));
 
     // 取消按钮
     if (widget.cancelButton != null) {
@@ -192,7 +200,7 @@ class IosWidgetState extends State<IosWidget> with TickerProviderStateMixin {
                   child: SizedBox(
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                        color: maskColor
+                        color: theme.maskColor
                       )
                     )
                   )

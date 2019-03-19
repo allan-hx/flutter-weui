@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import './index.dart';
-import '../theme.dart';
 import '../utils.dart';
 
-// 边框
-final Divider border = Divider(height: 1, color: defaultBorderColor);
 final double _leftPadding = 18.0;
 final double _topPadding = 12.0;
 
-List<Widget> initChilder(List<WeActionsheetItem> childer, onChange, { Alignment align = Alignment.center }) {
+List<Widget> initChilder(List<WeActionsheetItem> childer, onChange, Color borderColor, { Alignment align = Alignment.center }) {
   // 列表
   final List<Widget> list = [];
 
@@ -16,7 +13,7 @@ List<Widget> initChilder(List<WeActionsheetItem> childer, onChange, { Alignment 
   for (int index = 0; index < childer.length; index++) {
     // 边框
     if (index != 0) {
-      list.add(border);
+      list.add(Divider(height: 1, color: borderColor));
     }
 
     list.add(

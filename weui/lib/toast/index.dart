@@ -4,6 +4,7 @@ import './info.dart';
 import './toast.dart';
 import '../animation/rotating.dart';
 import '../icon/index.dart';
+import '../theme/index.dart';
 
 // 对齐方式
 enum WeToastInfoAlign {
@@ -15,8 +16,6 @@ enum WeToastInfoAlign {
   bottom
 }
 
-// 默认关闭时间
-const int _defaultDuration = 2500;
 // loading icon
 final Widget _loadingIcon = Image.asset('assets/images/loading.png', height: 42.0, package: 'weui');
 // success icon
@@ -42,20 +41,21 @@ typedef _close = Function();
 class WeToast {
   // 信息提示
   static _info info(BuildContext context) {
-    return (message, { duration = _defaultDuration, align = WeToastInfoAlign.center, distance = 100.0 }) async {
+    return (message, { duration, align, distance = 100.0 }) async {
+      final WeConfig config = WeUi.getConfig(context);
       // 转换
       final Widget messageWidget = toTextWidget(message, 'message');
       final remove = createOverlayEntry(
         context: context,
         child: InfoWidget(
           messageWidget,
-          align: _weToastAlign[align.index],
+          align: _weToastAlign[config.toastInfoAlign.index],
           distance: distance
         )
       );
 
       // 自动关闭
-      await Future.delayed(Duration(milliseconds: duration));
+      await Future.delayed(Duration(milliseconds: duration == null ? config.toastInfoDuration : duration));
       remove();
     };
   }
@@ -63,13 +63,13 @@ class WeToast {
   // 加载中
   static _loading loading(BuildContext context) {
     _close show({ message, duration, mask = true, icon }) {
-      icon = icon == null ? _loadingIcon : icon;
+      final int toastLoadingDuration = WeUi.getConfig(context).toastLoadingDuration;
 
       return WeToast.toast(context)(
-        icon: Rotating(icon, duration: 800),
+        icon: Rotating(icon == null ? _loadingIcon : icon, duration: 800),
         mask: mask,
         message: message,
-        duration: duration
+        duration: duration == null ? toastLoadingDuration : duration
       );
     }
 
@@ -78,24 +78,26 @@ class WeToast {
 
   // 成功
   static _success success(BuildContext context) {
-    return ({ message, duration = _defaultDuration, mask = true, icon = _successIcon }) {
+    return ({ message, duration, mask = true, icon = _successIcon }) {
+      final int toastSuccessDuration = WeUi.getConfig(context).toastSuccessDuration;
       WeToast.toast(context)(
         icon: icon,
         mask: mask,
         message: message,
-        duration: duration
+        duration: duration == null ? toastSuccessDuration : duration
       );
     };
   }
 
   // 失败
   static _fail fail(BuildContext context) {
-    return ({ message, duration = _defaultDuration, mask = true, icon = _failIcon }) {
+    return ({ message, duration, mask = true, icon = _failIcon }) {
+      final int notifySuccessDuration = WeUi.getConfig(context).notifySuccessDuration;
       WeToast.toast(context)(
         icon: icon,
         mask: mask,
         message: message,
-        duration: duration
+        duration: duration == null ? notifySuccessDuration : duration
       );
     };
   }

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:weui/weui.dart';
-import 'package:weui/theme.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import '../router/index.dart';
 
 class Index extends StatefulWidget {
+  final Function toggleTheme;
+  Index(this.toggleTheme);
+
   @override
   IndexState createState() => IndexState();
 }
 
-class IndexState extends State {
+class IndexState extends State<Index> {
   // 标题padding
   final double titlePadding = 36.0;
   // 列表左右padding
@@ -137,6 +139,7 @@ class IndexState extends State {
       ]
     }
   ];
+  bool isDefault = true;
 
   // 二维码
   void scan() async {
@@ -155,6 +158,14 @@ class IndexState extends State {
         toast('Unknown error: $e');
       }
     }
+  }
+
+  void toggleTheme() {
+    widget.toggleTheme();
+    this.setState(() {
+      isDefault = !isDefault;
+      WeToast.info(context)('当前为' + (isDefault ? '默认' : '自定义') + '主题');
+    });
   }
 
   // 渲染二级列表
@@ -187,7 +198,7 @@ class IndexState extends State {
 
       // 第一个不添加边框
       if (subList.indexOf(item) > 0) {
-        content.insert(0, Divider(height: 1, color: defaultBorderColor));
+        content.insert(0, Divider(height: 1, color: Color(0xffd8d8d8)));
       }
 
       widgetList.add(
@@ -266,32 +277,45 @@ class IndexState extends State {
       backgroundColor: Color(0xfff8f8f8),
       floatingActionButton: FloatingActionButton(
         onPressed: scan,
-        backgroundColor: primary,
+        backgroundColor: Color(0xff1AAD19),
         child: Icon(IconData(0xe618, fontFamily: 'iconfont'))
       ),
       body: ListView(
-        children: <Widget>[
+        children: [
           // head
-          Container(
-            padding: EdgeInsets.all(36.0),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Text('Flutter WeUi', style: TextStyle(
-                      fontSize: 25.0
-                    ))
+          Stack(
+            children: [
+              Container(
+                padding: EdgeInsets.all(36.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text('Flutter WeUi', style: TextStyle(
+                          fontSize: 25.0
+                        ))
+                      ]
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 10.0),
+                      child: Text('WeUI 是一套同微信原生视觉体验一致的基础样式库，由微信官方设计团队为微信内网页和微信小程序量身设计，令用户的使用感知更加统一。', style: TextStyle(
+                        fontSize: 15.0,
+                        color: Color(0xff888888)
+                      ))
+                    )
                   ]
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Text('WeUI 是一套同微信原生视觉体验一致的基础样式库，由微信官方设计团队为微信内网页和微信小程序量身设计，令用户的使用感知更加统一。', style: TextStyle(
-                    fontSize: 15.0,
-                    color: Color(0xff888888)
-                  ))
                 )
-              ]
-            )
+              ),
+              Positioned(
+                top: 10,
+                right: 20,
+                child: WeButton(
+                  isDefault ? '默认主题' : '自定义主题',
+                  size:WeButtonSize.mini,
+                  onClick: toggleTheme,
+                )
+              )
+            ]
           ),
           Container(
             padding: EdgeInsets.only(left: 18.0, right: 18.0, bottom: 10.0),

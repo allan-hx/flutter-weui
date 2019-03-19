@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../form/index.dart';
 import '../cell/index.dart';
 import '../icon/index.dart';
-import '../theme.dart';
+import '../theme/index.dart';
 import '../utils.dart';
 
 // onChane
@@ -50,11 +50,18 @@ class WeRadiolist extends StatefulWidget {
 
 class _RadiolistState extends State<WeRadiolist> {
   dynamic checked;
+  Color primaryColor;
 
   @override
   void initState() {
     super.initState();
     this.checked = widget.defaultValue;
+  }
+
+  @override
+  didChangeDependencies() {
+    super.didChangeDependencies();
+    primaryColor = WeUi.getTheme(context).primaryColor;
   }
 
   dynamic getCheckedValue() {
@@ -89,7 +96,7 @@ class _RadiolistState extends State<WeRadiolist> {
         alignment: Alignment.center,
         child: Icon(
           WeIcons.hook,
-          color: isDisabled ? color : primary,
+          color: isDisabled ? color : primaryColor,
           size: 18
         )
       ) : null

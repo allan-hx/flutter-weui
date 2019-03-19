@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/index.dart';
 
 class WeBadge extends StatefulWidget {
   final child;
@@ -9,7 +10,7 @@ class WeBadge extends StatefulWidget {
 
   WeBadge({
     this.child,
-    this.color = Colors.red,
+    this.color,
     this.textStyle,
     this.border,
     this.hollow = false
@@ -20,6 +21,15 @@ class WeBadge extends StatefulWidget {
 }
 
 class WeBadgeState extends State<WeBadge> {
+  Color color;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final WeTheme theme = WeUi.getTheme(context);
+    color = widget.color == null ? theme.warnColor : widget.color;
+  }
+
   @override
   Widget build(BuildContext context) {
     Color textColor;
@@ -27,12 +37,12 @@ class WeBadgeState extends State<WeBadge> {
     Border border;
 
     if (widget.hollow) {
-      textColor = widget.color;
+      textColor = color;
       boxColor = Colors.transparent;
-      border = Border.all(width: 1, color: widget.color);
+      border = Border.all(width: 1, color: color);
     } else {
       textColor = Colors.white;
-      boxColor = widget.color;
+      boxColor = color;
       border = null;
     }
 
@@ -44,7 +54,6 @@ class WeBadgeState extends State<WeBadge> {
             color: boxColor,
             borderRadius: BorderRadius.all(Radius.circular(20.0)),
             border: widget.border == null ? border : widget.border
-            // border: Bo
           ),
           child: Padding(
             padding: EdgeInsets.only(top: 2.0, right: 7.0, bottom: 2.0, left: 7.0),

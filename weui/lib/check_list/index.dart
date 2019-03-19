@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../form/index.dart';
 import '../cell/index.dart';
 import '../icon/index.dart';
-import '../theme.dart';
+import '../theme/index.dart';
 import '../utils.dart';
 
 // onChane
@@ -62,11 +62,18 @@ class WeChecklist extends StatefulWidget {
 
 class _ChecklistState extends State<WeChecklist> {
   List<String> checkedList = [];
+  WeTheme theme;
 
   @override
   void initState() {
     super.initState();
     this.checkedList = widget.defaultValue == null ? [] : widget.defaultValue;
+  }
+
+  @override
+  didChangeDependencies() {
+    super.didChangeDependencies();
+    theme = WeUi.getTheme(context);
   }
 
   List<String> getCheckedValue() {
@@ -101,17 +108,16 @@ class _ChecklistState extends State<WeChecklist> {
     final bool isChecked = checkedList.indexOf(item.value) >= 0;
     // 配置了禁用或者达到限制
     final bool isDisabled = isTrue(item.disabled) || (checkedList.length == widget.max && !isChecked);
-    final Color color = Color(0xffc9c9c9);
     Color borderColor;
     Color bgColor;
 
     // 判断是否禁用
     if (isDisabled) {
-      borderColor = bgColor = color;
+      borderColor = bgColor = theme.defaultBorderColor;
     } else if (isChecked) {
-      borderColor = bgColor = primary;
+      borderColor = bgColor = theme.primaryColor;
     } else {
-      borderColor = Color(0xffc9c9c9);
+      borderColor = theme.defaultBorderColor;
       bgColor = Colors.transparent;
     }
 

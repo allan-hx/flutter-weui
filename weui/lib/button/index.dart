@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../animation/rotating.dart';
-import '../theme.dart';
+import '../theme/index.dart';
 import '../icon/index.dart';
 
 // 颜色类型
@@ -25,39 +25,14 @@ class WeButton extends StatefulWidget {
   final Function onClick;
   // loading
   final bool loading;
+  // 空心
+  final bool hollow;
   // 按钮大小类型
   WeButtonSize sizeType;
-  // 按钮主题
-  Map<String, Color> theme;
   // 按钮大小
   Map<String, double> size;
   // 主题
-  final List<Map<String, Color>> themeConfig = [
-    // 默认
-    {
-      'backgroundColor': defaultBackgroundColor,
-      'fontColor': Colors.black,
-      'disabledBackgroundColor': Color(0xfff7f7f7),
-      'borderColor': Color(0xffc6c6c6),
-      'hollowColor': Color(0xff353535)
-    },
-    // primary
-    {
-      'backgroundColor': primary,
-      'fontColor': Colors.white,
-      'disabledBackgroundColor': primaryDisabled,
-      'borderColor': Color(0xffc6c6c6),
-      'hollowColor': primary
-    },
-    // warn
-    {
-      'backgroundColor': warn,
-      'fontColor': Colors.white,
-      'disabledBackgroundColor': warnDisabled,
-      'borderColor': Color(0xffc6c6c6),
-      'hollowColor': warn
-    }
-  ];
+  final WeButtonType theme;
   // 大小配置
   final List<Map<String, double>> sizeConfig = [
     {
@@ -79,17 +54,60 @@ class WeButton extends StatefulWidget {
     {
       this.onClick,
       WeButtonSize size = WeButtonSize.acquiescent,
-      hollow = false,
-      WeButtonType theme = WeButtonType.acquiescent,
+      this.hollow = false,
+      this.theme = WeButtonType.acquiescent,
       this.disabled = false,
       this.loading = false,
     }
   ) {
     this.size = sizeConfig[size.index];
     this.sizeType = size;
-    final themeConf = themeConfig[theme.index];
+  }
+
+  @override
+  _ButtonState createState() => _ButtonState();
+}
+class _ButtonState extends State<WeButton> {
+  // 主题
+  List<Map<String, Color>> themeConfig;
+  // 按钮主题
+  Map<String, Color> theme;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final WeTheme theme = WeUi.getTheme(context);
+    // 按钮主题
+    themeConfig = [
+      // 默认
+      {
+        'backgroundColor': theme.defaultBackgroundColor,
+        'fontColor': Colors.black,
+        'disabledBackgroundColor': Color(0xfff7f7f7),
+        'borderColor': theme.defaultBorderColor,
+        'hollowColor': Color(0xff353535)
+      },
+      // primary
+      {
+        'backgroundColor': theme.primaryColor,
+        'fontColor': Colors.white,
+        'disabledBackgroundColor': theme.primaryColorDisabled,
+        'borderColor': theme.primaryColor,
+        'hollowColor': theme.primaryColor
+      },
+      // warn
+      {
+        'backgroundColor': theme.warnColor,
+        'fontColor': Colors.white,
+        'disabledBackgroundColor': theme.warnColorDisabled,
+        'borderColor': theme.warnColor,
+        'hollowColor': theme.warnColor
+      }
+    ];
+
+    final themeConf = themeConfig[widget.theme.index];
     // 判断是否空心
-    if (hollow) {
+    if (widget.hollow) {
       this.theme = {
         'backgroundColor': Colors.transparent,
         'fontColor': themeConf['hollowColor'],
@@ -101,10 +119,6 @@ class WeButton extends StatefulWidget {
     }
   }
 
-  @override
-  _ButtonState createState() => _ButtonState();
-}
-class _ButtonState extends State<WeButton> {
   // 按钮点击
   onClick() {
     if (widget.onClick is Function) {
@@ -130,7 +144,7 @@ class _ButtonState extends State<WeButton> {
       DefaultTextStyle(
         style: TextStyle(
           fontSize: size['fontSize'],
-          color: widget.theme['fontColor']
+          color: theme['fontColor']
         ),
         child: child
       )
@@ -141,7 +155,7 @@ class _ButtonState extends State<WeButton> {
         padding: EdgeInsets.only(right: 5),
         child: Rotating(Icon(
           WeIcons.loading,
-          color: widget.theme['fontColor'],
+          color: theme['fontColor'],
           size: size['iconSize']
         ))
       );
@@ -162,7 +176,6 @@ class _ButtonState extends State<WeButton> {
   Widget build(BuildContext context) {
     // size
     final size = widget.size;
-    final theme = widget.theme;
     // 是否禁用状态
     final bool disabled = widget.loading || widget.disabled;
     // 圆角
@@ -174,7 +187,11 @@ class _ButtonState extends State<WeButton> {
       decoration: BoxDecoration(
         color: disabled ? theme['disabledBackgroundColor'] : null,
         borderRadius: borderRadius,
-        border: Border.all(width: size['borderSize'], color: theme['borderColor'])
+        // 空心或者默认按钮才添加边框
+        border: widget.hollow || widget.theme == WeButtonType.acquiescent ? Border.all(
+          width: size['borderSize'],
+          color: theme['borderColor']
+        ) : null
       ),
       child: renderChild(widget.child)
     );
@@ -186,7 +203,7 @@ class _ButtonState extends State<WeButton> {
 
     return Material(
       borderRadius: borderRadius,
-      color: widget.theme['backgroundColor'],
+      color: theme['backgroundColor'],
       child: InkWell(
         onTap: onClick,
         borderRadius: borderRadius,

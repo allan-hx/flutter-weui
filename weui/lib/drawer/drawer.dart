@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
 import '../animation/fade_in.dart';
+import '../theme/index.dart';
 
 // 方向
 enum WeDrawerPlacement {
@@ -37,6 +37,7 @@ class DrawerWidgetState extends State<DrawerWidget> with TickerProviderStateMixi
   Animation<double> offsetAnimation;
   // 是否垂直
   bool isVertical;
+  WeTheme theme;
 
   @override
   void initState() {
@@ -58,6 +59,12 @@ class DrawerWidgetState extends State<DrawerWidget> with TickerProviderStateMixi
       );
 
     WidgetsBinding.instance.addPostFrameCallback(getBoxHeight);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    theme = WeUi.getTheme(context);
   }
 
   void getBoxHeight(Duration time) {
@@ -164,7 +171,7 @@ class DrawerWidgetState extends State<DrawerWidget> with TickerProviderStateMixi
                 onTap: widget.maskClick,
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: maskColor
+                    color: theme.maskColor
                   )
                 )
               )

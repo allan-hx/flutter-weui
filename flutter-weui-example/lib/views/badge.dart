@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../layout/sample.dart';
 import 'package:weui/weui.dart';
 import '../components/title.dart';
-import 'package:weui/theme.dart';
 
 class BadgePage extends StatefulWidget {
   @override
@@ -31,7 +30,7 @@ class BadgePageState extends State {
           TextTitle('自定义样式', noPadding: true),
           WeBadge(
             child: 'Value',
-            color: primary,
+            color: Colors.yellow,
             textStyle: TextStyle(
               fontSize: 14.0
             )

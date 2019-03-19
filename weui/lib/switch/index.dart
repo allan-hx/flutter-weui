@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../theme/index.dart';
 
 class WeSwitch extends StatefulWidget {
   // 颜色
@@ -14,7 +14,7 @@ class WeSwitch extends StatefulWidget {
   final Function(bool checked) onChange;
 
   WeSwitch({
-    this.color = primary,
+    this.color,
     this.size = 28.0,
     this.checked,
     this.disabled = false,
@@ -28,6 +28,7 @@ class WeSwitch extends StatefulWidget {
 class WeSwitchState extends State<WeSwitch> with TickerProviderStateMixin {
   double _width;
   double _height;
+  Color color;
   bool _open = false;
   // 动画
   AnimationController controller;
@@ -36,12 +37,18 @@ class WeSwitchState extends State<WeSwitch> with TickerProviderStateMixin {
 
   @override
   void initState() {
+    super.initState();
     _width = widget.size * 2;
     _height = widget.size + 2;
     _open = widget.checked == null ? false : widget.checked;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    color = widget.color == null ? WeUi.getTheme(context).primaryColor : widget.color;
     // 初始化动画
     initAnimate();
-    super.initState();
   }
 
   void initAnimate() {
@@ -62,7 +69,7 @@ class WeSwitchState extends State<WeSwitch> with TickerProviderStateMixin {
           setState(() {});
         });
       // color
-      colorAnimation = ColorTween(begin: Colors.white, end: widget.color)
+      colorAnimation = ColorTween(begin: Colors.white, end: color)
         .animate(
           CurvedAnimation(
             parent: controller,

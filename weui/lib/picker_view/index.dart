@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../theme/index.dart';
+
+typedef void OnChange(List<String> value);
 
 class  WePickerView extends StatefulWidget {
   final int itemCount;
   final double itemHeight;
-  final List<List<WePickerItem>> children;
+  final OnChange onChange;
+  final List<List<WePickerItem>> options;
 
   WePickerView({
     itemCount = 5,
-    this.itemHeight = 35,
-    @required this.children
+    this.itemHeight = 42,
+    this.onChange,
+    @required this.options
   }) : assert(itemCount % 2 == 1), this.itemCount = itemCount;
 
   @override
@@ -22,18 +26,26 @@ class WePickerViewState extends State<WePickerView> {
   double borderTop;
   double _startY;
   double _endY = 0;
+  WeTheme theme;
 
   @override
   initState() {
     super.initState();
-    final int placeholderNumber = ((widget.itemCount - 1) / 2).toInt();
+    final double placeholderNumber = (widget.itemCount - 1) / 2;
     // 计算线框top值
     borderTop = placeholderNumber * widget.itemHeight;
     boxHeight = widget.itemHeight * widget.itemCount;
   }
 
-  onVerticalDragDown(DragDownDetails _) {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    theme = WeUi.getTheme(context);
+  }
+
+  onVerticalDragDown(DragDownDetails _, int index) {
     _startY = _.globalPosition.dy;
+    _endY = tops[index] == null ? 0 : tops[index];
   }
 
   onVerticalDragUpdate(DragUpdateDetails _, int index) {
@@ -43,7 +55,25 @@ class WePickerViewState extends State<WePickerView> {
   }
 
   onVerticalDragEnd(int index) {
-    _endY = tops[index];
+    final double itemHalfHiehgt = widget.itemHeight / 2;
+    final double colHeight = widget.options[index].length * widget.itemHeight;
+    final double currentTop = -tops[index];
+    double top;
+
+    // 判断边界值
+    if (currentTop <= itemHalfHiehgt) {
+      top = 0;
+    } else if (currentTop >= colHeight - itemHalfHiehgt) {
+      top = -(colHeight - widget.itemHeight);
+    } else {
+      int number = (tops[index] ~/ widget.itemHeight);
+      number = number + (-tops[index] % widget.itemHeight >= itemHalfHiehgt ? -1 : 0);
+      top = number * widget.itemHeight;
+    }
+
+    this.setState(() {
+      tops[index] = top;
+    });
   }
 
   DecoratedBox _renderMaskDecoratedBox(Alignment begin, Alignment end) {
@@ -61,13 +91,15 @@ class WePickerViewState extends State<WePickerView> {
   List<Widget> renderItem () {
     final List<Widget> columns = [];
 
-    for (int i = 0; i < widget.children.length; i++) {
-      final column = widget.children[i];
+    for (int i = 0; i < widget.options.length; i++) {
+      final column = widget.options[i];
       columns.add(
         Expanded(
           flex: 1,
           child: GestureDetector(
-            onVerticalDragDown: onVerticalDragDown,
+            onVerticalDragDown: (_) {
+              onVerticalDragDown(_, i);
+            },
             onVerticalDragUpdate: (_) {
               onVerticalDragUpdate(_, i);
             },
@@ -79,14 +111,13 @@ class WePickerViewState extends State<WePickerView> {
                 color: Colors.transparent,
               ),
               child: Stack(
-                overflow: Overflow.clip,
                 children: [
                   Positioned(
-                    top: 0,
+                    top: tops[i] == null ? 0 : tops[i],
                     right: 0,
                     left: 0,
-                    child: Transform.translate(
-                      offset: Offset(0, tops[i] == null ? 0 : tops[i]),
+                    child: Padding(
+                      padding: EdgeInsets.only(top: borderTop),
                       child: Column(
                         children: column.map((item) {
                           return SizedBox(
@@ -145,13 +176,13 @@ class WePickerViewState extends State<WePickerView> {
             top: borderTop,
             left: 0,
             right: 0,
-            child: Divider(height: 1, color: defaultBorderColor)
+            child: Divider(height: 1, color: theme.defaultBorderColor)
           ),
           Positioned(
             top: borderTop + widget.itemHeight,
             left: 0,
             right: 0,
-            child: Divider(height: 1, color: defaultBorderColor)
+            child: Divider(height: 1, color: theme.defaultBorderColor)
           )
         ]
       )

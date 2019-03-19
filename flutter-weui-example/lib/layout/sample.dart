@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 final double viewPadding = 20.0;
-const Color _defaultColor = Color(0xfff8f8f8);
+// const Color _defaultColor = Color(0xfff8f8f8);
+const Color _defaultColor = Color(0xffffffff);
 
 class Sample extends StatelessWidget {
   String title;

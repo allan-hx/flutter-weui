@@ -10,7 +10,7 @@ class PickerViewPage extends StatefulWidget {
 class PickerViewState extends State {
   @override
   Widget build(BuildContext context) {
-    final List<WePickerItem> children = [1, 2, 3, 4, 5, 6].map((item) {
+    final List<WePickerItem> children = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((item) {
       return WePickerItem(
         label: '项选项$item',
         value: '选项$item'
@@ -23,8 +23,7 @@ class PickerViewState extends State {
       child: Column(
         children: [
           WePickerView(
-            itemCount: 5,
-            children: [children, children, children]
+            options: [children, children, children]
           )
         ]
       )

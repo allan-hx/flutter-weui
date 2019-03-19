@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../layout/sample.dart';
 import 'package:weui/weui.dart';
 import '../components/title.dart';
-import 'package:weui/theme.dart';
 
 Widget box(Widget child) {
   return Padding(
@@ -47,7 +46,7 @@ class _InputPageState extends State {
                 key: inputKey,
                 label: '标题',
                 hintText: '自定义图标',
-                footer: Icon(WeIcons.info, size: 22, color: primary)
+                footer: Icon(WeIcons.info, size: 22)
               ),
               WeInput(
                 label: '验证码',

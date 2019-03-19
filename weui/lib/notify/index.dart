@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import './notify.dart';
 import '../utils.dart';
-import '../theme.dart';
+import '../theme/index.dart';
 
 typedef _Notify = Function ({
   int duration,
@@ -17,10 +17,11 @@ typedef _Show = Function ({
 class WeNotify {
   // 成功
   static _Notify success (BuildContext context) {
-    return ({ duration = 3000, child }) {
+    final int notifySuccessDuration = WeUi.getConfig(context).notifySuccessDuration;
+    return ({ duration, child }) {
       WeNotify.show(context)(
-        color: primary,
-        duration: duration,
+        color: WeUi.getTheme(context).primaryColor,
+        duration: duration == null ? notifySuccessDuration : duration,
         child: child
       );
     };
@@ -28,23 +29,25 @@ class WeNotify {
 
   // 失败
   static error (BuildContext context) {
-    return ({ duration = 3000, child }) {
+    final int notifyErrorDuration = WeUi.getConfig(context).notifyErrorDuration;
+    return ({ duration, child }) {
       WeNotify.show(context)(
-        color: warn,
-        duration: duration,
+        color: WeUi.getTheme(context).warnColor,
+        duration: duration == null ? notifyErrorDuration : duration,
         child: child
       );
     };
   }
 
   static _Show show (BuildContext context) {
-    return ({ color = warn, duration = 3000, child }) {
+    final int notifyDuration = WeUi.getConfig(context).notifyDuration;
+    return ({ color, duration, child }) {
       final GlobalKey widgetKey = GlobalKey();
       final Function remove = createOverlayEntry(
         context: context,
         child: NotifyWidget(
           key: widgetKey,
-          color: color,
+          color: color == null ? WeUi.getTheme(context).warnColor : color,
           child: child
         )
       );
@@ -55,7 +58,7 @@ class WeNotify {
         remove();
       }
 
-      Future.delayed(Duration(milliseconds: duration), close);
+      Future.delayed(Duration(milliseconds: duration == null ? notifyDuration : duration), close);
     };
   }
 }

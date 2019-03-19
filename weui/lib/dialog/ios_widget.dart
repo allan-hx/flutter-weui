@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
-import '../theme.dart';
+import '../theme/index.dart';
 import '../animation/fade_in.dart';
 import '../animation/scale.dart';
 import './layout_hoc.dart';
@@ -31,6 +31,13 @@ class IosWidgetState extends State<IosWidget> {
   final GlobalKey _fadeInKey = GlobalKey();
   final GlobalKey _scaleKey = GlobalKey();
   final _intervalSize = 1 / MediaQueryData.fromWindow(ui.window).devicePixelRatio;
+  WeTheme theme;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    theme = WeUi.getTheme(context);
+  }
 
   // 渲染按钮
   Widget _renderButton() {
@@ -52,7 +59,7 @@ class IosWidgetState extends State<IosWidget> {
             height: footerHeight,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: defaultBorderColor
+                color: theme.defaultBorderColor
               )
             )
           )
@@ -70,7 +77,7 @@ class IosWidgetState extends State<IosWidget> {
               child: DefaultTextStyle(
                 style: TextStyle(
                   fontSize: _titleSize,
-                  color: widget.buttons.length > 1 && isOne ? Color(0xff555555) : primary
+                  color: widget.buttons.length > 1 && isOne ? Color(0xff555555) : theme.primaryColor
                 ),
                 child: item['widget']
               )
@@ -109,7 +116,7 @@ class IosWidgetState extends State<IosWidget> {
           child: widget.message
         )
       ),
-      Divider(height: 1.0, color: defaultBorderColor),
+      Divider(height: 1.0, color: theme.defaultBorderColor),
       // 按钮
       _renderButton()
     ];
@@ -132,6 +139,7 @@ class IosWidgetState extends State<IosWidget> {
     return layoutHoc(
       scaleKey: _scaleKey,
       fadeInKey: _fadeInKey,
+      maskColor: theme.maskColor,
       children: children
     );
   }

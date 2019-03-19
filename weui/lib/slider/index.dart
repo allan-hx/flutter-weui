@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../theme/index.dart';
 
 // 默认背景
 const Color _defaultColor = Color(0xffE9E9E9);
@@ -38,7 +38,7 @@ class WeSlider extends StatefulWidget {
     this.defaultValue = 0,
     this.color = _defaultColor,
     this.disabledColor = _disabledColor,
-    this.higColor = primary,
+    this.higColor,
     this.height = 2.0,
     this.buttonSize = 26.0,
     this.min = 0,
@@ -65,6 +65,8 @@ class _WeSliderState extends State<WeSlider> {
   double _stepWidth = 0.0;
   // 按钮宽度
   double _buttonWidth;
+  // 高亮色
+  Color higColor;
   // 按钮 key
   GlobalKey _buttonKey = new GlobalKey();
   // 容器 key
@@ -74,6 +76,12 @@ class _WeSliderState extends State<WeSlider> {
   _WeSliderState(this._max, defaultValue) {
     _value = defaultValue;
     WidgetsBinding.instance.addPostFrameCallback(init);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    higColor = widget.higColor == null ? WeUi.getTheme(context).primaryColor : widget.higColor;
   }
 
   // 按下
@@ -164,7 +172,7 @@ class _WeSliderState extends State<WeSlider> {
                   height: widget.height,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      color: isDisabled ? widget.disabledColor : widget.higColor
+                      color: isDisabled ? widget.disabledColor : higColor
                     )
                   )
                 )

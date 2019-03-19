@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../icon/index.dart';
-import '../theme.dart';
+import '../theme/index.dart';
 
 class WeCollapse extends StatefulWidget {
   // 数据
@@ -46,12 +46,12 @@ class WeCollapseState extends State<WeCollapse> {
   // 上下padding
   final double titleUpAndDownPadding = 13.0;
   // 边框
-  final Widget border = Divider(height: 1, color: defaultBorderColor);
+  Widget border;
   // 当前激活
   List<String> activeIndex = [];
 
   @override
-  void initState() { 
+  void initState() {
     super.initState();
 
     if (widget.card) {
@@ -61,6 +61,12 @@ class WeCollapseState extends State<WeCollapse> {
     if (widget.defaultActive != null) {
       activeIndex = widget.defaultActive;
     }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    border = Divider(height: 1, color: WeUi.getTheme(context).defaultBorderColor);
   }
 
   void onClick(String key) {

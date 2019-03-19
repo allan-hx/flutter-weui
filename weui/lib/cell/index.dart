@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
-
-// 边框
-const Divider _border = Divider(height: 1, color: defaultBorderColor);
+import '../theme/index.dart';
 // 间距
 const double _spacing = 20.0;
 
 class WeCells extends StatelessWidget {
   final bool boxBorder;
   final double spacing;
-  List<Widget> children;
+  final List<Widget> children;
 
   WeCells({
     this.boxBorder = true,
     this.spacing = _spacing,
-    @required children,
-  }) {
+    @required this.children,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // 边框
+    final Color borderColor = WeUi.getTheme(context).defaultBorderColor;
+    final Divider _border = Divider(height: 1, color: borderColor);
     final List<Widget> newChildren = [];
+
     children.forEach((item) {
       if (item != children[0]) {
         newChildren.add(
@@ -35,17 +39,12 @@ class WeCells extends StatelessWidget {
       newChildren.insert(0, _border);
     }
 
-    this.children = newChildren;
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white
       ),
       child: Column(
-        children: children
+        children: newChildren
       )
     );
   }

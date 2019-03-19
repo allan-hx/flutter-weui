@@ -21,7 +21,6 @@ Widget toTextWidget(content, key) {
 Function() createOverlayEntry({
   @required BuildContext context,
   @required Widget child,
-  Color color = Colors.transparent,
   bool backIntercept = false,
   Function willPopCallback
 }) {

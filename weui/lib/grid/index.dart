@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-// 默认边框
-const BorderSide _defaultBorder = BorderSide(width: 0.8, color: Color(0xffD9D9D9));
+import '../theme/index.dart';
 
 class WeGrid extends StatefulWidget {
   final int itemCount;
@@ -13,7 +11,7 @@ class WeGrid extends StatefulWidget {
     @required this.itemCount,
     @required this.itemBuilder,
     this.count = 3,
-    this.border = _defaultBorder
+    this.border
   });
 
   @override
@@ -23,9 +21,20 @@ class WeGrid extends StatefulWidget {
 class WeGridState extends State<WeGrid> {
   GlobalKey _boxKey = GlobalKey();
   double _itemWidth = 0.0;
+  // 边框
+  BorderSide border;
 
   WeGridState() {
     WidgetsBinding.instance.addPostFrameCallback(init);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // 边框
+    final Color borderColor = WeUi.getTheme(context).defaultBorderColor;
+    final BorderSide _defaultBorder = BorderSide(width: 0.8, color: borderColor);
+    border = widget.border == null ? _defaultBorder : widget.border;
   }
 
   void init(time) {
@@ -54,10 +63,10 @@ class WeGridState extends State<WeGrid> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border(
-                  top: rowIndex == 0 ? widget.border : BorderSide.none,
-                  right: widget.border,
-                  bottom: widget.border,
-                  left: index == 0 ? widget.border : BorderSide.none
+                  top: rowIndex == 0 ? border : BorderSide.none,
+                  right: border,
+                  bottom: border,
+                  left: index == 0 ? border : BorderSide.none
                 )
               ),
               child: widget.itemBuilder(index)

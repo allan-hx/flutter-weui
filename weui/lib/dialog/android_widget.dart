@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../theme/index.dart';
 import '../animation/fade_in.dart';
 import '../animation/scale.dart';
 import './layout_hoc.dart';
@@ -29,6 +29,13 @@ class AndroidWidgetState extends State<AndroidWidget> {
   final GlobalKey _fadeInKey = GlobalKey();
   final GlobalKey _scaleKey = GlobalKey();
   final double _buttonPadding = 20.0;
+  WeTheme theme;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    theme = WeUi.getTheme(context);
+  }
 
   // 渲染按钮
   Widget _renderButton() {
@@ -57,7 +64,7 @@ class AndroidWidgetState extends State<AndroidWidget> {
                 child: DefaultTextStyle(
                   style: TextStyle(
                     fontSize: 17.0,
-                    color: widget.buttons.length > 1 && isOne ? Color(0xff555555) : primary
+                    color: widget.buttons.length > 1 && isOne ? Color(0xff555555) : theme.primaryColor
                   ),
                   child: item['widget']
                 )
@@ -139,6 +146,7 @@ class AndroidWidgetState extends State<AndroidWidget> {
     return layoutHoc(
       scaleKey: _scaleKey,
       fadeInKey: _fadeInKey,
+      maskColor: theme.maskColor,
       children: children
     );
   }

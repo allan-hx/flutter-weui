@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils.dart';
 import './android_widget.dart';
-import '../theme.dart';
 import './ios_widget.dart';
 
 // 弹窗
@@ -121,7 +120,7 @@ _createAndroidLayout(BuildContext context, message, {
 
   remove = createOverlayEntry(
     context: context,
-    color: maskColor,
+    // color: WeUi.getTheme(context).maskColor,
     child: widget,
     willPopCallback: cancel
   );
