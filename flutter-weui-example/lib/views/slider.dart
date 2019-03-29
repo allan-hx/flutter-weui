@@ -65,7 +65,7 @@ class _SliderPageState extends State {
             WeSlider(
               defaultValue: 40
             ),
-            TextTitle('动态修改value - value:$changeValue'),
+            TextTitle('受控组件 - value:$changeValue'),
             // 默认
             WeSlider(
               value: changeValue,

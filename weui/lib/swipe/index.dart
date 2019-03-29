@@ -185,7 +185,6 @@ class WeSwipeState extends State<WeSwipe> {
     }
 
     // 边界值判断
-    print(_index);
     if (_index == widget.itemCount + 1) {
       _pageController.jumpToPage(1);
     }

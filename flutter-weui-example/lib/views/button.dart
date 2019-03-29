@@ -58,12 +58,7 @@ class ButtonPageState extends State {
           children: <Widget>[
             // 按钮
             Title('按钮'),
-            WeButton('default', onClick: () {
-              final duration = Duration(seconds: 1);
-              Future.delayed(duration, () {
-                print('object');
-              });
-            }),
+            WeButton('default'),
             box,
             WeButton(
               'primary',

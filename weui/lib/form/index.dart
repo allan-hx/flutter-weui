@@ -29,7 +29,6 @@ class WeFormState extends State<WeForm> {
   }
 
   validate() {
-    print(formValue);
   }
 
   @override

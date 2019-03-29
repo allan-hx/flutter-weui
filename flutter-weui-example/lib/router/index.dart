@@ -22,6 +22,8 @@ import '../views/switch.dart';
 import '../views/tip.dart';
 import '../views/notify.dart';
 import '../views/picker_view.dart';
+import '../views/checkbox.dart';
+import '../views/radio.dart';
 
 final routes = <String, WidgetBuilder>{
   // 按钮
@@ -69,5 +71,9 @@ final routes = <String, WidgetBuilder>{
   // notify
   '/notify': (_) => NotifyPage(),
   // pickView
-  '/picker_view': (_) => PickerViewPage()
+  '/picker_view': (_) => PickerViewPage(),
+  // checkbox
+  '/checkbox': (_) => CheckboxPage(),
+  // radio
+  '/radio': (_) => RadioPage(),
 };

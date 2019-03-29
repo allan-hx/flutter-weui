@@ -32,8 +32,16 @@ class IndexState extends State<Index> {
           'url': '/checklist'
         },
         {
+          'title': 'Checkbox',
+          'url': '/checkbox'
+        },
+        {
           'title': 'Radiolist',
           'url': '/radiolist'
+        },
+        {
+          'title': 'Radio',
+          'url': '/radio'
         },
         {
           'title': 'Input',
@@ -259,6 +267,7 @@ class IndexState extends State<Index> {
   @override
   Widget build (BuildContext context) {
     final List<WeCollapseItem> children = [];
+    final theme = WeUi.getTheme(context);
 
     list.forEach((item) {
       children.add(
@@ -277,7 +286,7 @@ class IndexState extends State<Index> {
       backgroundColor: Color(0xfff8f8f8),
       floatingActionButton: FloatingActionButton(
         onPressed: scan,
-        backgroundColor: Color(0xff1AAD19),
+        backgroundColor: theme.primaryColor,
         child: Icon(IconData(0xe618, fontFamily: 'iconfont'))
       ),
       body: ListView(

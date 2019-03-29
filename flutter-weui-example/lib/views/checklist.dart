@@ -32,7 +32,8 @@ class _ChecklistPageState extends State {
     ),
     WeChecklistItem(
       label: '选项二 - 选中禁用',
-      value: '2'
+      value: '2',
+      disabled: true
     ),
     WeChecklistItem(
       label: '选项三',
@@ -62,8 +63,8 @@ class _ChecklistPageState extends State {
             align: 'right',
             children: options
           ),
-          // 动态改变value
-          TextTitle('动态改变value'),
+          // 受控组件
+          TextTitle('受控组件'),
           WeChecklist(
             children: options,
             value: value,

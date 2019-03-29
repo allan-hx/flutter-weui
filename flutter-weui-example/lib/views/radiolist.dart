@@ -72,7 +72,7 @@ class _RadioListState extends State<RadioListPage> {
             children: options2,
             defaultValue: '2'
           ),
-          TextTitle('动态改变value'),
+          TextTitle('受控组件'),
           WeRadiolist(
             children: options,
             value: value,

@@ -52,3 +52,7 @@ export './tip/index.dart';
 export './notify/index.dart';
 // WePickView
 export './picker_view/index.dart';
+// Checkbox
+export './checkbox/index.dart';
+// Radio
+export './radio/index.dart';
