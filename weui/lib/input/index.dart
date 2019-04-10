@@ -5,9 +5,11 @@ import '../icon/index.dart';
 
 class WeInput extends StatefulWidget {
   // key
-  final GlobalKey key;
+  final Key key;
   // label
   dynamic label;
+  // 高度
+  final double height;
   // 默认值
   final String defaultValue;
   // 最大行数
@@ -30,12 +32,15 @@ class WeInput extends StatefulWidget {
   final bool autofocus;
   // label宽度
   final double labelWidth;
+  // TextInputAction
+  final TextInputAction textInputAction;
   // onChange
   final Function(String value) onChange;
 
   WeInput({
-    label,
     this.key,
+    label,
+    this.height = 48,
     this.defaultValue = '',
     this.maxLines = 1,
     this.hintText,
@@ -47,6 +52,7 @@ class WeInput extends StatefulWidget {
     this.style,
     this.autofocus = false,
     this.labelWidth = 80.0,
+    this.textInputAction,
     this.onChange
   }) : this.label = toTextWidget(label, 'label'),
       super(key: key);
@@ -57,9 +63,20 @@ class WeInput extends StatefulWidget {
 
 class WeInputState extends State<WeInput> {
   final TextEditingController controller = TextEditingController();
+  TextInputAction textInputAction;
 
   WeInputState() {
     _init();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.textInputAction == null) {
+      textInputAction = widget.maxLines == 1 ? TextInputAction.search : TextInputAction.newline;
+    } else {
+      textInputAction = widget.textInputAction;
+    }
   }
 
   // 初始化
@@ -126,6 +143,7 @@ class WeInputState extends State<WeInput> {
       // label
       label: label,
       footer: footer,
+      minHeight: widget.height,
       content: DefaultTextStyle(
         style: TextStyle(
           fontSize: 16.0,
@@ -135,6 +153,7 @@ class WeInputState extends State<WeInput> {
           autofocus: widget.autofocus,
           textAlign: widget.textAlign,
           keyboardType: widget.type,
+          textInputAction: textInputAction,
           obscureText: widget.obscureText,
           style: widget.style,
           controller: controller,

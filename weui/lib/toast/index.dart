@@ -49,7 +49,7 @@ class WeToast {
         context: context,
         child: InfoWidget(
           messageWidget,
-          align: _weToastAlign[config.toastInfoAlign.index],
+          align: _weToastAlign[align == null ? config.toastInfoAlign.index : align.index],
           distance: distance
         )
       );

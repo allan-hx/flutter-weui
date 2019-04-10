@@ -320,7 +320,7 @@ class IndexState extends State<Index> {
                 right: 20,
                 child: WeButton(
                   isDefault ? '默认主题' : '自定义主题',
-                  size:WeButtonSize.mini,
+                  size: WeButtonSize.mini,
                   onClick: toggleTheme,
                 )
               )

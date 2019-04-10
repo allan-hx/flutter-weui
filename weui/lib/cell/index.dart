@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/index.dart';
 // 间距
-const double _spacing = 20.0;
+const double labelSpacing = 20.0;
 
 class WeCells extends StatelessWidget {
   final bool boxBorder;
@@ -10,7 +10,7 @@ class WeCells extends StatelessWidget {
 
   WeCells({
     this.boxBorder = true,
-    this.spacing = _spacing,
+    this.spacing = labelSpacing,
     @required this.children,
   });
 
@@ -71,7 +71,7 @@ class WeCell extends StatelessWidget {
     content,
     this.footer,
     this.align = Alignment.centerRight,
-    this.spacing = _spacing,
+    this.spacing = labelSpacing,
     this.minHeight = 46.0,
     this.onClick
   }) {

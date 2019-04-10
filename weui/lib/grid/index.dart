@@ -47,7 +47,7 @@ class WeGridState extends State<WeGrid> {
   Widget build(BuildContext context) {
     final List<Widget> children = [];
     // 计算行数
-    final int rowNum = (widget.itemCount / 3).ceil();
+    final int rowNum = (widget.itemCount / widget.count).ceil();
 
     // 行数
     for (int rowIndex = 0; rowIndex < rowNum; rowIndex++) {
@@ -69,7 +69,7 @@ class WeGridState extends State<WeGrid> {
                   left: index == 0 ? border : BorderSide.none
                 )
               ),
-              child: widget.itemBuilder(index)
+              child: widget.itemBuilder((rowIndex * widget.count) + index)
             )
           ));
         }

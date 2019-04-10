@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import '../cell/index.dart';
 
 class WeForm extends StatefulWidget {
+  final bool boxBorder;
+  final double spacing;
+  final double height;
   final List<Widget> children;
 
   WeForm({
     key,
+    this.boxBorder = true,
+    this.spacing = labelSpacing,
+    this.height = 50,
     @required this.children
   }) : super(key: key);
 
@@ -37,6 +43,8 @@ class WeFormState extends State<WeForm> {
       state: this,
       formValue: formValue,
       child: WeCells(
+        boxBorder: widget.boxBorder,
+        spacing: widget.spacing,
         children: widget.children
       )
     );
