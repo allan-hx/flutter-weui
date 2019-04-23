@@ -43,8 +43,11 @@ class WeCells extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white
       ),
-      child: Column(
-        children: newChildren
+      child: _WeCellsScope(
+        weCells: this,
+        child: Column(
+          children: newChildren
+        ),
       )
     );
   }
@@ -98,6 +101,8 @@ class WeCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> children = [];
+    final _WeCellsScope weCellsScope = _WeCellsScope.of(context);
+    final double _spacing = weCellsScope == null ? spacing : weCellsScope.weCells.spacing;
 
     // label
     if (label is Widget) {
@@ -145,7 +150,7 @@ class WeCell extends StatelessWidget {
           color: Colors.black
         ),
         child: Padding(
-          padding: EdgeInsets.only(left: spacing, right: spacing),
+          padding: EdgeInsets.only(left: _spacing, right: _spacing),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: children
@@ -167,3 +172,23 @@ class WeCell extends StatelessWidget {
     );
   }
 }
+
+class _WeCellsScope extends InheritedWidget {
+  final WeCells weCells;
+
+  _WeCellsScope({
+    Key key,
+    child,
+    this.weCells,
+  }) : super(key: key, child: child);
+
+  static _WeCellsScope of(BuildContext context) {
+    return context.inheritFromWidgetOfExactType(_WeCellsScope);
+  }
+
+  @override
+  bool updateShouldNotify(_WeCellsScope oldWidget) {
+    return true;
+  }
+}
+

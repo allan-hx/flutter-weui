@@ -11,7 +11,7 @@ class ToastWidget extends StatelessWidget {
     this.message,
     this.icon,
     this.mask,
-    this.width = 115.0
+    this.width = 130.0
   });
 
   @override
@@ -23,11 +23,15 @@ class ToastWidget extends StatelessWidget {
       children.add(icon);
     }
 
-    // // 判断是否有文字
+    // 判断是否有文字
     if (message != null) {
       children.add(
         Padding(
-          padding: EdgeInsets.only(top: 4.0),
+          padding: EdgeInsets.only(
+            top: 4.0,
+            right: 5.0,
+            left: 5.0,
+          ),
           child: DefaultTextStyle(
             style: TextStyle(
               fontSize: 16.0,
@@ -47,19 +51,17 @@ class ToastWidget extends StatelessWidget {
       ),
       child: Padding(
         padding: EdgeInsets.only(top: _padding, bottom: _padding),
-        child: SizedBox(
-          width: width,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: width - (_padding * 2.2)
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: children
-            )
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: width,
+            minHeight: width - (_padding * 2.2)
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: children
           )
-        )
+        ),
       )
     );
 

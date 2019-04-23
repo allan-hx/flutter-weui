@@ -14,8 +14,12 @@ class WeInput extends StatefulWidget {
   final String defaultValue;
   // 最大行数
   final int maxLines;
+  // 限制输入数量
+  final int maxLength;
   // 提示文字
   final String hintText;
+  // 光标
+  final FocusNode focusNode;
   // footer
   final Widget footer;
   // 是否显示清除
@@ -43,7 +47,9 @@ class WeInput extends StatefulWidget {
     this.height = 48,
     this.defaultValue = '',
     this.maxLines = 1,
+    this.maxLength,
     this.hintText,
+    this.focusNode,
     this.footer,
     this.clearable = false,
     this.textAlign = TextAlign.start,
@@ -157,11 +163,14 @@ class WeInputState extends State<WeInput> {
           obscureText: widget.obscureText,
           style: widget.style,
           controller: controller,
+          focusNode: widget.focusNode,
           onChanged: _onChange,
           maxLines: widget.maxLines,
+          maxLength: widget.maxLength,
           decoration: InputDecoration(
             border: InputBorder.none,
-            hintText: widget.hintText
+            hintText: widget.hintText,
+            counterText: ''
           )
         )
       )

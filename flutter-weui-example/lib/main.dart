@@ -29,7 +29,7 @@ class AppState extends State {
         warnColorDisabled: Color(0xfffaa7a3)
       ),
       config: WeConfig(
-        toastInfoDuration: 1000
+        toastSuccessDuration: 5000
       ),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

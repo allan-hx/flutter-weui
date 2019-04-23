@@ -30,11 +30,11 @@ typedef _info = Function(dynamic message, { int duration, WeToastInfoAlign align
 // loading
 typedef _loading = Function({ dynamic message, int duration, bool mask, Widget icon });
 // success
-typedef _success = Function({ dynamic message, int duration, bool mask, Widget icon });
+typedef _success = Function({ dynamic message, int duration, bool mask, Widget icon, Function onClose });
 // fail
-typedef _fail = Function({ dynamic message, int duration, bool mask, Widget icon });
+typedef _fail = Function({ dynamic message, int duration, bool mask, Widget icon, Function onClose });
 // toast
-typedef _toast = Function({ dynamic message, int duration, bool mask, Widget icon });
+typedef _toast = Function({ dynamic message, int duration, bool mask, Widget icon, Function onClose });
 // loading close
 typedef _close = Function();
 
@@ -78,51 +78,61 @@ class WeToast {
 
   // 成功
   static _success success(BuildContext context) {
-    return ({ message, duration, mask = true, icon = _successIcon }) {
+    return ({ message, duration, mask = true, icon = _successIcon, onClose }) {
       final int toastSuccessDuration = WeUi.getConfig(context).toastSuccessDuration;
       WeToast.toast(context)(
         icon: icon,
         mask: mask,
         message: message,
-        duration: duration == null ? toastSuccessDuration : duration
+        duration: duration == null ? toastSuccessDuration : duration,
+        onClose: onClose
       );
     };
   }
 
   // 失败
   static _fail fail(BuildContext context) {
-    return ({ message, duration, mask = true, icon = _failIcon }) {
+    return ({ message, duration, mask = true, icon = _failIcon, onClose }) {
       final int notifySuccessDuration = WeUi.getConfig(context).notifySuccessDuration;
+      print(notifySuccessDuration);
       WeToast.toast(context)(
         icon: icon,
         mask: mask,
         message: message,
-        duration: duration == null ? notifySuccessDuration : duration
+        duration: duration == null ? notifySuccessDuration : duration,
+        onClose: onClose
       );
     };
   }
 
   // 提示
   static _toast toast(BuildContext context) {
-    return ({ message, duration, mask = true, icon }) {
+    return ({ message, duration, mask = true, icon, onClose }) {
       // 转换
       final Widget messageWidget = toTextWidget(message, 'message');
-      final remove = createOverlayEntry(
+      Function remove = createOverlayEntry(
         context: context,
         child: ToastWidget(
           message: messageWidget,
           mask: mask,
-          icon: icon
+          icon: icon,
         )
       );
 
       void close() {
-        remove();
+        if (remove != null) {
+          remove();
+          remove = null;
+        }
       }
 
       // 自动关闭
       if (duration != null) {
-        Future.delayed(Duration(milliseconds: duration), close);
+        Future.delayed(Duration(milliseconds: duration), () {
+          close();
+          // 关闭回调
+          if (onClose is Function) onClose();
+        });
       }
 
       return close;
