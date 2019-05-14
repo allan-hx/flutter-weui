@@ -93,13 +93,12 @@ class WeToast {
   // 失败
   static _fail fail(BuildContext context) {
     return ({ message, duration, mask = true, icon = _failIcon, onClose }) {
-      final int notifySuccessDuration = WeUi.getConfig(context).notifySuccessDuration;
-      print(notifySuccessDuration);
+      final int toastFailDuration = WeUi.getConfig(context).toastFailDuration;
       WeToast.toast(context)(
         icon: icon,
         mask: mask,
         message: message,
-        duration: duration == null ? notifySuccessDuration : duration,
+        duration: duration == null ? toastFailDuration : duration,
         onClose: onClose
       );
     };

@@ -28,13 +28,13 @@ class ToastWidget extends StatelessWidget {
       children.add(
         Padding(
           padding: EdgeInsets.only(
-            top: 4.0,
+            top: 8.0,
             right: 5.0,
             left: 5.0,
           ),
           child: DefaultTextStyle(
             style: TextStyle(
-              fontSize: 16.0,
+              fontSize: 14.0,
               color: Colors.white
             ),
             child: message
