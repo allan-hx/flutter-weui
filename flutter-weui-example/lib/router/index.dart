@@ -24,6 +24,7 @@ import '../views/notify.dart';
 import '../views/picker_view.dart';
 import '../views/checkbox.dart';
 import '../views/radio.dart';
+import '../views/spin.dart';
 
 final routes = <String, WidgetBuilder>{
   // 按钮
@@ -76,4 +77,6 @@ final routes = <String, WidgetBuilder>{
   '/checkbox': (_) => CheckboxPage(),
   // radio
   '/radio': (_) => RadioPage(),
+  // spin
+  '/spin': (_) => SpinPage(),
 };
