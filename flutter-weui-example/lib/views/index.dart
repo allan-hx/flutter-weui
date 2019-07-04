@@ -90,7 +90,7 @@ class IndexState extends State<Index> {
           'url': '/loadmore'
         },
         {
-          'title': 'spin',
+          'title': 'Spin',
           'url': '/spin'
         }
       ]

@@ -15,3 +15,8 @@
 ### 修复
 - 修复WeInput组件多行输入时无法点击键盘的换行
 - 修复WeGrid组件中itemBuilder没有返回正确的index
+
+## 0.0.5
+
+### 新增
+- 新增WeSpin组件

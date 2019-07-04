@@ -56,3 +56,5 @@ export './picker_view/index.dart';
 export './checkbox/index.dart';
 // Radio
 export './radio/index.dart';
+// Spin
+export './spin/index.dart';
