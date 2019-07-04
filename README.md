@@ -1,4 +1,4 @@
-# weui   [![pub package](https://img.shields.io/badge/-v0.0.4-brightgreen.svg)](https://pub.dartlang.org/packages/weui)
+# weui   [![pub package](https://img.shields.io/badge/-v0.0.5-brightgreen.svg)](https://pub.dartlang.org/packages/weui)
 
 #### 用flutter实现的weui框架, 实现了weui大部分的组件, 同时支持android 和 ios, 欢迎大家使用和交流
 
@@ -18,7 +18,7 @@
 
 ## 安装
 ```
-weui: 0.0.4
+weui: 0.0.5
 ```
 
 ## 如何运行案例
