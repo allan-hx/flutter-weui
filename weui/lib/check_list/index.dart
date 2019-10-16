@@ -13,17 +13,17 @@ final double _iconSize = 22.0;
 
 class WeChecklist extends StatefulWidget {
   // 选项
-  List<WeChecklistItem> children;
+  final List<WeChecklistItem> children;
   // value
-  List<String> value;
+  final List<String> value;
   // 默认选中
-  List<String> defaultValue;
+  final List<String> defaultValue;
   // 排列方式
-  String align;
+  final String align;
   // onChange
-  OnChangeBack onChange;
+  final OnChangeBack onChange;
   // max
-  int max;
+  final int max;
   // icon padding间距
   final double padding = 8.0;
   // left padding
@@ -33,12 +33,12 @@ class WeChecklist extends StatefulWidget {
 
   WeChecklist({
     @required this.children,
-    value,
+    this.value,
     this.defaultValue,
     this.align = 'left',
     this.onChange,
     max
-  }) {
+  }): this.max = max is int ? max : children.length {
     if (align == 'left') {
       _leftPadding = 0.0;
       _rightPadding = padding;
@@ -46,14 +46,6 @@ class WeChecklist extends StatefulWidget {
       _leftPadding = padding;
       _rightPadding = 0.0;
     }
-
-    if (value != null) {
-      this.value = [];
-      this.value.addAll(value);
-    }
-
-    // 最多选择
-    this.max = max is int ? max : children.length; 
   }
 
   @override

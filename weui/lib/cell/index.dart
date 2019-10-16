@@ -55,9 +55,9 @@ class WeCells extends StatelessWidget {
 
 class WeCell extends StatelessWidget {
   // label
-  Widget label;
+  final Widget label;
   // 内容
-  Widget content;
+  final Widget content;
   // footer
   final Widget footer;
   // 对齐方式
@@ -77,21 +77,9 @@ class WeCell extends StatelessWidget {
     this.spacing = labelSpacing,
     this.minHeight = 46.0,
     this.onClick
-  }) {
-    // label
-    if (label is String) {
-      this.label = Text(label);
-    } else {
-      this.label = label;
-    }
-
-    // content
-    if (content is String) {
-      this.content = Text(content);
-    } else {
-      this.content = content;
-    }
-  }
+  }):
+    this.label = label is String ? Text(label) : label,
+    this.content = content is String ? Text(content) : content;
 
   // 点击
   void onTap() {

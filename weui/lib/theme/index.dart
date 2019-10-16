@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../toast/index.dart';
 
-const Color _primaryColor = Color(0xff1AAD19);
-const Color _primaryColorDisabled = Color(0xff9ED99D);
+const Color _primaryColor = Color(0xff07C160);
+const Color _primaryColorDisabled = Color(0xff06AD56);
 const Color _warnColor = Color(0xffE64340);
 const Color _warnColorDisabled = Color(0xffEC8B89);
 const Color _defaultBackgroundColor = Color(0xfff8f8f8);

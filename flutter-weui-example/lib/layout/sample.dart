@@ -5,19 +5,24 @@ final double viewPadding = 20.0;
 const Color _defaultColor = Color(0xffffffff);
 
 class Sample extends StatelessWidget {
-  String title;
-  String describe;
-  Widget child;
-  bool showPadding;
-  Color color;
+  final String title;
+  final String describe;
+  final Widget child;
+  final bool showPadding;
+  final Color color;
 
-  Sample (title, { describe, child, showPadding = true, color = _defaultColor }) {
-    this.title = title;
-    this.showPadding = showPadding;
-    this.describe = describe is String ? describe : null;
-    this.child = child is Widget ? child : null;
+  Sample (this.title, { describe, child, showPadding = true, color = _defaultColor }):
+    this.showPadding = showPadding,
+    this.describe = describe is String ? describe : null,
+    this.child = child is Widget ? child : null,
     this.color = color;
-  }
+
+  // Sample (this.title, { describe, child, showPadding = true, color = _defaultColor }) {
+  //   this.showPadding = showPadding;
+  //   this.describe = describe is String ? describe : null;
+  //   this.child = child is Widget ? child : null;
+  //   this.color = color;
+  // }
 
   @override
   Widget build (BuildContext context) {

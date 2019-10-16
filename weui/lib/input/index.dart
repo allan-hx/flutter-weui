@@ -7,7 +7,7 @@ class WeInput extends StatefulWidget {
   // key
   final Key key;
   // label
-  dynamic label;
+  final dynamic label;
   // 高度
   final double height;
   // 默认值
@@ -23,7 +23,7 @@ class WeInput extends StatefulWidget {
   // footer
   final Widget footer;
   // 是否显示清除
-  bool clearable;
+  final bool clearable;
   // 文字对其方式
   final TextAlign textAlign;
   // 输入框类型

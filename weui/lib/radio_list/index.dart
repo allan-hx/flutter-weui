@@ -12,15 +12,15 @@ final double _iconSize = 24.0;
 
 class WeRadiolist extends StatefulWidget {
   // 选项
-  List<WeRadiolistItem> children = [];
+  final List<WeRadiolistItem> children;
   // value
-  String value;
+  final String value;
   // defaultValue
-  String defaultValue;
+  final String defaultValue;
   // 排列方式
-  String align = '';
+  final String align;
   // onChange
-  changeBack onChange;
+  final changeBack onChange;
   // icon padding间距
   final double padding = 8.0;
   // left padding

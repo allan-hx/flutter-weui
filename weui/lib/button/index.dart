@@ -16,9 +16,25 @@ enum WeButtonSize {
   mini
 }
 
+// 大小配置
+final List<Map<String, double>> _sizeConfig = [
+  {
+    'fontSize': 18.0,
+    'height': 45.0,
+    'iconSize': 16.0,
+    'borderSize': 0.5
+  },
+  {
+    'fontSize': 13.0,
+    'height': 30.0,
+    'iconSize': 14.0,
+    'borderSize': 0.4
+  }
+];
+
 class WeButton extends StatefulWidget {
   // 内容
-  dynamic child;
+  final dynamic child;
   // 禁用
   final bool disabled;
   // 点击回调
@@ -28,41 +44,25 @@ class WeButton extends StatefulWidget {
   // 空心
   final bool hollow;
   // 按钮大小类型
-  WeButtonSize sizeType;
+  final WeButtonSize sizeType;
   // 按钮大小
-  Map<String, double> size;
+  final Map<String, double> size;
   // 主题
   final WeButtonType theme;
-  // 大小配置
-  final List<Map<String, double>> sizeConfig = [
-    {
-      'fontSize': 18.0,
-      'height': 45.0,
-      'iconSize': 16.0,
-      'borderSize': 0.5
-    },
-    {
-      'fontSize': 13.0,
-      'height': 30.0,
-      'iconSize': 14.0,
-      'borderSize': 0.4
-    }
-  ];
 
   WeButton(
     this.child,
     {
-      this.onClick,
       WeButtonSize size = WeButtonSize.acquiescent,
+      this.onClick,
       this.hollow = false,
       this.theme = WeButtonType.acquiescent,
       this.disabled = false,
       this.loading = false,
     }
-  ) {
-    this.size = sizeConfig[size.index];
+  ):
+    this.size = _sizeConfig[size.index],
     this.sizeType = size;
-  }
 
   @override
   _ButtonState createState() => _ButtonState();
