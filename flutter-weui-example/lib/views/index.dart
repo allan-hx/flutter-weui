@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:weui/weui.dart';
-import 'package:barcode_scan/barcode_scan.dart';
-import '../router/index.dart';
+// import 'package:barcode_scan/barcode_scan.dart';
+// import '../router/index.dart';
 
 class Index extends StatefulWidget {
   final Function toggleTheme;
@@ -61,7 +61,7 @@ class IndexState extends State<Index> {
         },
         {
           'title': 'PickerView',
-          'url': '/picker_view'
+          'url': null// '/picker_view'
         }
       ]
     },
@@ -153,24 +153,24 @@ class IndexState extends State<Index> {
   ];
   bool isDefault = true;
 
-  // 二维码
-  void scan() async {
-    final toast = WeToast.info(context);
-    try {
-      final String url = await BarcodeScanner.scan();
-      if (routes[url] == null) {
-        toast('二维码错误, 请扫描文档上的二维码');
-      } else {
-        Navigator.of(context).pushNamed(url);
-      }
-    } on PlatformException catch (e) {
-      if (e.code == BarcodeScanner.CameraAccessDenied) {
-        toast('请授权相机权限');
-      } else {
-        toast('Unknown error: $e');
-      }
-    }
-  }
+  // // 二维码
+  // void scan() async {
+  //   final toast = WeToast.info(context);
+  //   try {
+  //     final String url = await BarcodeScanner.scan();
+  //     if (routes[url] == null) {
+  //       toast('二维码错误, 请扫描文档上的二维码');
+  //     } else {
+  //       Navigator.of(context).pushNamed(url);
+  //     }
+  //   } on PlatformException catch (e) {
+  //     if (e.code == BarcodeScanner.CameraAccessDenied) {
+  //       toast('请授权相机权限');
+  //     } else {
+  //       toast('Unknown error: $e');
+  //     }
+  //   }
+  // }
 
   void toggleTheme() {
     widget.toggleTheme();
@@ -288,11 +288,11 @@ class IndexState extends State<Index> {
 
     return Scaffold(
       backgroundColor: Color(0xfff8f8f8),
-      floatingActionButton: FloatingActionButton(
-        onPressed: scan,
-        backgroundColor: theme.primaryColor,
-        child: Icon(IconData(0xe618, fontFamily: 'iconfont'))
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: scan,
+      //   backgroundColor: theme.primaryColor,
+      //   child: Icon(IconData(0xe618, fontFamily: 'iconfont'))
+      // ),
       body: ListView(
         children: [
           // head
