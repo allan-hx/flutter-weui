@@ -1,0 +1,18 @@
+name: weui
+description: flutter版的weui.
+version: 0.0.5
+author: allan <1440806569@qq.com>
+homepage: https://github.com/allan-hx/flutter-weui
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  smart_color: ^0.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
