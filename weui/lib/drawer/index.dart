@@ -11,20 +11,24 @@ typedef ShowDrawer = Function({
   bool maskClosable,
   // 方向
   WeDrawerPlacement placement,
+  // 背景色
+  Color background,
   // 内容
-  @required Widget child
+  @required Widget child,
 });
+
 typedef CloseDrawer = Function();
 
 ShowDrawer weDrawer(BuildContext context) {
   final GlobalKey widgetKey = GlobalKey();
 
-  CloseDrawer showDrawer ({
+  CloseDrawer showDrawer({
     mask = true,
     maskClosable = true,
     placement = WeDrawerPlacement.left,
+    background,
     onClose,
-    child
+    child,
   }) {
     Function remove;
 
@@ -45,9 +49,14 @@ ShowDrawer weDrawer(BuildContext context) {
         mask: mask,
         placement: placement,
         maskClick: maskClosable ? close : null,
-        child: child
+        background: background,
+        child: child,
       ),
-      willPopCallback: close
+      willPopCallback: () {
+        if (maskClosable) {
+          close();
+        }
+      },
     );
 
     return close;

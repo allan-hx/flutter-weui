@@ -19,20 +19,17 @@ Widget toTextWidget(content, key) {
 }
 
 // 创建OverlayEntry
-Function() createOverlayEntry({
-  @required BuildContext context,
-  @required Widget child,
-  bool backIntercept = false,
-  Function willPopCallback
-}) {
+Function() createOverlayEntry(
+    {@required BuildContext context,
+    @required Widget child,
+    bool backIntercept = false,
+    Function willPopCallback}) {
   final overlayState = Overlay.of(context);
   ModalRoute _route;
 
   OverlayEntry overlayEntry = new OverlayEntry(builder: (context) {
     return DefaultTextStyle(
-      style: Theme.of(context).textTheme.body1,
-      child: child
-    );
+        style: Theme.of(context).textTheme.bodyText1, child: child);
   });
   overlayState.insert(overlayEntry);
 

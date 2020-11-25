@@ -1,5 +1,4 @@
 ## 0.0.4
-
 ### 修改
 - WeInput添加height参数, 设置高度
 - WeInput添加maxLength参数, 限制最大输入数量
@@ -17,6 +16,19 @@
 - 修复WeGrid组件中itemBuilder没有返回正确的index
 
 ## 0.0.5
-
 ### 新增
 - 新增WeSpin组件
+
+## 0.0.6
+### 新增
+- weDrawer移除默认背景 - PS：更新后用户您需要自己设置背景
+
+## 0.0.7
+### 新增
+- weDrawer新增```background```参数
+- weDrawer修改```maskClosable```为```true```时拦截返回关闭
+
+## 0.0.8
+### 新增
+- weDrawer bug修复
+- weDrawer优化

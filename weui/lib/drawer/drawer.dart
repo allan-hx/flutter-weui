@@ -16,6 +16,7 @@ class DrawerWidget extends StatefulWidget {
   final bool mask;
   final Function() maskClick;
   final int duration;
+  final Color background;
 
   DrawerWidget({
     key,
@@ -23,6 +24,7 @@ class DrawerWidget extends StatefulWidget {
     this.mask,
     this.maskClick,
     this.duration = 150,
+    this.background,
     @required this.child
   }) : super(key: key);
 
@@ -30,7 +32,7 @@ class DrawerWidget extends StatefulWidget {
   DrawerWidgetState createState() => DrawerWidgetState();
 }
 
-class DrawerWidgetState extends State<DrawerWidget> with TickerProviderStateMixin {
+class DrawerWidgetState extends State<DrawerWidget> with TickerProviderStateMixin<DrawerWidget> {
   GlobalKey boxKey = GlobalKey();
   AnimationController controller;
   //高度动画
@@ -149,7 +151,7 @@ class DrawerWidgetState extends State<DrawerWidget> with TickerProviderStateMixi
               child: DecoratedBox(
                 key: boxKey,
                 decoration: BoxDecoration(
-                  color: Colors.white
+                  color: widget.background ?? Colors.white,
                 ),
                 child: widget.child
               )

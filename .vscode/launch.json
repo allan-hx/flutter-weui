@@ -6,7 +6,7 @@
   "configurations": [
     {
       "name": "Dart",
-      "program": "flutter-weui-example/lib/main.dart",
+      "program": "flutter_weui_example/lib/main.dart",
       "request": "launch",
       "type": "dart"
     }
